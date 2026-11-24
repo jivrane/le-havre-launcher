@@ -170,8 +170,20 @@ export async function launchMinecraft(options, onProgress, onClose) {
     };
   }
 
-  launcher.on('debug', (e) => console.log('[MCLC DEBUG]', e));
-  launcher.on('data', (e) => console.log('[MC]', e));
+  let launchFailedReason = null;
+  let gameStarted = false;
+
+  launcher.on('debug', (e) => {
+    console.log('[MCLC DEBUG]', e);
+    if (typeof e === 'string' && e.includes('Failed to start due to')) {
+      launchFailedReason = e.replace('[MCLC]: ', '');
+    }
+  });
+
+  launcher.on('data', (e) => {
+    gameStarted = true;
+    console.log('[MC]', e);
+  });
 
   launcher.on('progress', (e) => {
     if (e.total > 0) {
@@ -195,16 +207,35 @@ export async function launchMinecraft(options, onProgress, onClose) {
     }
   });
 
-  launcher.on('close', (code) => {
-    console.log('[MC] Jeu fermé avec code:', code);
-    if (onClose) onClose(code);
-  });
+  return new Promise(async (resolve, reject) => {
+    launcher.on('close', (code) => {
+      console.log('[MC] Jeu fermé avec code:', code);
+      if (!gameStarted && (launchFailedReason || code !== 0)) {
+        const msg = launchFailedReason || `Échec du lancement (code ${code}). Vérifiez votre connexion aux serveurs Mojang.`;
+        reject(new Error(msg));
+        return;
+      }
+      if (onClose) onClose(code);
+    });
 
-  onProgress({
-    stage: 'LAUNCHING',
-    progress: 95,
-    message: 'Démarrage de Minecraft Forge 1.20.1...'
-  });
+    onProgress({
+      stage: 'LAUNCHING',
+      progress: 95,
+      message: 'Démarrage de Minecraft Forge 1.20.1...'
+    });
 
-  await launcher.launch(launchOpts);
+    try {
+      const proc = await launcher.launch(launchOpts);
+      if (!proc && launchFailedReason) {
+        reject(new Error(launchFailedReason));
+        return;
+      }
+      if (proc) {
+        gameStarted = true;
+        resolve(proc);
+      }
+    } catch (err) {
+      reject(err);
+    }
+  });
 }

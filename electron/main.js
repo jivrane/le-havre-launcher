@@ -1,3 +1,6 @@
+// Fix TLS interception (NextDNS, proxies d'entreprise, etc.) pour que MCLC puisse contacter Mojang
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 import { app, BrowserWindow, ipcMain, shell } from 'electron';
 import path from 'path';
 import fs from 'fs';
