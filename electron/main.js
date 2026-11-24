@@ -3,7 +3,9 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import net from 'net';
+import { Auth } from 'msmc';
 import { synchronizeGameFiles } from './syncManager.js';
+import { launchMinecraft } from './gameLauncher.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -142,66 +144,40 @@ ipcMain.handle('auth-logout', () => {
   }
 });
 
-// IPC : Authentification Microsoft Officielle (OAuth2)
+// IPC : Authentification Microsoft Officielle (OAuth2 + Xbox Live + Mojang via MSMC)
 ipcMain.handle('auth-microsoft-login', async () => {
-  return new Promise((resolve) => {
-    // Fenêtre modale sécurisée pour la connexion officielle Microsoft
-    const authWindow = new BrowserWindow({
+  try {
+    const authManager = new Auth('select_account');
+    const xboxManager = await authManager.launch('electron', {
       width: 500,
       height: 650,
       parent: mainWindow,
       modal: true,
       title: 'Connexion Microsoft - Le Havre',
-      autoHideMenuBar: true,
-      webPreferences: {
-        nodeIntegration: false,
-        contextIsolation: true
-      }
+      autoHideMenuBar: true
     });
 
-    // Client ID officiel Microsoft/Xbox pour Minecraft ou Azure
-    const clientId = '00000000402b5328'; // Standard Minecraft Azure client ID
-    const redirectUri = 'https://login.live.com/oauth20_desktop.srf';
-    const authUrl = `https://login.live.com/oauth20_authorize.srf?client_id=${clientId}&response_type=code&scope=service::user.auth.xboxlive.com::MBI_SSL&redirect_uri=${encodeURIComponent(redirectUri)}`;
+    const mcToken = await xboxManager.getMinecraft();
+    if (!mcToken || !mcToken.profile) {
+      return { success: false, error: 'Ce compte Microsoft ne possède pas Minecraft Java Edition.' };
+    }
 
-    authWindow.loadURL(authUrl);
+    const mclcAuth = mcToken.mclc(true);
+    const profile = {
+      username: mcToken.profile.name,
+      uuid: mcToken.profile.id,
+      isOfficial: true,
+      mclcAuth,
+      refreshToken: xboxManager.msToken?.refresh_token || mcToken.refreshTkn || null,
+      connectedAt: new Date().toISOString()
+    };
 
-    let isHandled = false;
-
-    authWindow.webContents.on('will-redirect', async (event, newUrl) => {
-      if (newUrl.startsWith(redirectUri)) {
-        event.preventDefault();
-        const urlParams = new URL(newUrl).searchParams;
-        const code = urlParams.get('code');
-
-        if (code && !isHandled) {
-          isHandled = true;
-          authWindow.close();
-          try {
-            // Dans cette V1, on stocke le code ou on échange avec les API Xbox Live
-            // Pour le test et la démo immédiate, on génère un profil vérifié propre
-            const profile = {
-              username: 'Survivant_' + Math.floor(1000 + Math.random() * 9000),
-              uuid: 'c0ffeec0-cafe-4b09-9000-' + Date.now().toString(16).slice(-12),
-              isOfficial: true,
-              token: 'mc_ms_' + code.slice(0, 16),
-              connectedAt: new Date().toISOString()
-            };
-            fs.writeFileSync(userFile, JSON.stringify(profile, null, 2), 'utf-8');
-            resolve({ success: true, profile });
-          } catch (err) {
-            resolve({ success: false, error: err.message });
-          }
-        }
-      }
-    });
-
-    authWindow.on('closed', () => {
-      if (!isHandled) {
-        resolve({ success: false, error: 'Connexion annulée par l\'utilisateur.' });
-      }
-    });
-  });
+    fs.writeFileSync(userFile, JSON.stringify(profile, null, 2), 'utf-8');
+    return { success: true, profile };
+  } catch (err) {
+    console.error('Erreur auth Microsoft:', err);
+    return { success: false, error: typeof err === 'string' ? err : (err.message || 'Connexion annulée') };
+  }
 });
 
 // IPC : Ping du serveur Minecraft
@@ -250,8 +226,36 @@ ipcMain.handle('game-launch', async (_event, options) => {
   }
 
   try {
-    // 1. Synchronisation réelle des fichiers
-    const syncResult = await synchronizeGameFiles(
+    // 0. Vérification et rafraîchissement du token Microsoft si disponible
+    let storedUser = options.user;
+    if (fs.existsSync(userFile)) {
+      storedUser = JSON.parse(fs.readFileSync(userFile, 'utf-8'));
+    }
+
+    if (!storedUser || !storedUser.mclcAuth) {
+      throw new Error('Session expirée. Veuillez vous reconnecter avec votre compte Microsoft.');
+    }
+
+    if (storedUser.refreshToken) {
+      try {
+        mainWindow?.webContents.send('sync-progress', {
+          stage: 'AUTH',
+          progress: 3,
+          message: 'Vérification de la session Microsoft...'
+        });
+        const authManager = new Auth('select_account');
+        const xboxManager = await authManager.refresh(storedUser.refreshToken);
+        const mcToken = await xboxManager.getMinecraft();
+        storedUser.mclcAuth = mcToken.mclc(true);
+        storedUser.refreshToken = xboxManager.msToken?.refresh_token || storedUser.refreshToken;
+        fs.writeFileSync(userFile, JSON.stringify(storedUser, null, 2), 'utf-8');
+      } catch (refreshErr) {
+        console.warn('Impossible de rafraîchir le token, tentative avec le token actuel:', refreshErr);
+      }
+    }
+
+    // 1. Synchronisation réelle des mods, configs et TACZ depuis GitHub
+    await synchronizeGameFiles(
       gameDir,
       settings.gitManifestUrl,
       (progressData) => {
@@ -259,14 +263,25 @@ ipcMain.handle('game-launch', async (_event, options) => {
       }
     );
 
-    // 2. Préparation du lancement Minecraft Forge 1.20.1
-    mainWindow?.webContents.send('sync-progress', {
-      stage: 'LAUNCHING',
-      progress: 98,
-      message: 'Lancement du client Forge 1.20.1 (Allocation RAM: ' + (options.ram || 6) + ' Go)...'
-    });
-
-    await new Promise((r) => setTimeout(r, 1200));
+    // 2. Lancement réel de Minecraft 1.20.1 + Forge 47.4.28 (avec Java 17 auto)
+    await launchMinecraft(
+      {
+        gameDir,
+        ram: options.ram || settings.ram || 6,
+        jvmArgs: settings.jvmArgs,
+        mclcAuth: storedUser.mclcAuth,
+        serverIp: settings.serverIp,
+        serverPort: settings.serverPort,
+        autoConnect: settings.autoConnect,
+        javaPath: settings.javaPath
+      },
+      (progressData) => {
+        mainWindow?.webContents.send('sync-progress', progressData);
+      },
+      () => {
+        mainWindow?.webContents.send('game-status', 'STOPPED');
+      }
+    );
 
     mainWindow?.webContents.send('game-status', 'RUNNING');
     return { success: true };

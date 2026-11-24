@@ -36,6 +36,9 @@ export default function App() {
         // Écoute de la progression de synchronisation
         window.electronAPI.onSyncProgress((data) => {
           setSyncProgress(data);
+          if (data.stage === 'ERROR') {
+            setIsLaunching(false);
+          }
         });
 
         // Écoute de l'état du jeu
@@ -43,6 +46,10 @@ export default function App() {
           if (status === 'RUNNING') {
             setIsLaunching(false);
             setGameRunning(true);
+          } else if (status === 'STOPPED') {
+            setIsLaunching(false);
+            setGameRunning(false);
+            setSyncProgress(null);
           }
         });
       } else {
