@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.mp5a2.name",
+  "display": "ronmc:mp5a2_display",
+  "data": "ronmc:mp5a2_data",
+  "tooltip": "ronmc.gun.mp5a2.desc",
+  "type": "smg"
+}

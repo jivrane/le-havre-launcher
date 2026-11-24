@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.mcx.name",
+  "display": "ronmc:mcx_display",
+  "data": "ronmc:mcx_data",
+  "type": "rifle",
+  "tooltip": "ronmc.gun.mcx.desc",
+  "sort": 2
+}

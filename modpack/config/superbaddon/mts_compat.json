@@ -1,0 +1,26 @@
+{
+  "_note": "Optional MinecraftTransportSimulator / Immersive Vehicles compatibility. No hard dependency is declared. Jerrycan consumes the MTS jerrycanFluid NBT and charges SuperbWarfare vehicles through Forge ENERGY. Fuel pump drains the MTS pump tank reflectively and charges the nearest SuperbWarfare vehicle.",
+  "_note_fuels": "fluid_energy_per_bucket is a whitelist: only the fluids listed here with a positive value can fuel a vehicle. Anything absent (water, milk, modded fluids) or set to 0 is rejected and never drained. Set default_energy_per_bucket above 0 only if you want EVERY fluid to burn at that rate. Use MTS fluid names without a namespace, e.g. \"lava\", not \"minecraft:lava\".",
+  "enabled": true,
+  "default_energy_per_bucket": 0,
+  "jerrycan": {
+    "enabled": true,
+    "allow_nbt_only_detection": true,
+    "allowed_items": []
+  },
+  "fuel_pump": {
+    "enabled": true,
+    "mb_per_tick": 10,
+    "search_radius": 32
+  },
+  "controls": {
+    "bridge_controls": false
+  },
+  "fluid_energy_per_bucket": {
+    "lava": 5000000,
+    "fuel": 7500000,
+    "gasoline": 8750000,
+    "diesel": 10000000,
+    "biodiesel": 7500000
+  }
+}

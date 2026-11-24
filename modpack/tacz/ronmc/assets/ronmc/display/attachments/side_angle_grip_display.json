@@ -1,0 +1,9 @@
+{
+  "slot": "ronmc:attachment/slot/side_angle_grip",
+  "model": "ronmc:attachment/side_angle_grip_geo",
+  "texture": "ronmc:attachment/uv/side_angle_grip",
+  "sounds": {
+    "install": "tacz:attachments/attachment_general_b",
+    "uninstall": "tacz:attachments/attachment_general_uninstall"
+  }
+}

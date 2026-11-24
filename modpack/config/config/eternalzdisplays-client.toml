@@ -1,0 +1,9 @@
+
+[rendu]
+	#Distance (blocs) jusqu'a laquelle le contenu des panneaux est dessine.
+	#Range: 8 ~ 256
+	distanceContenu = 64
+	#Distance (blocs) jusqu'a laquelle les textes sont dessines.
+	#Range: 4 ~ 256
+	distanceTexte = 32
+

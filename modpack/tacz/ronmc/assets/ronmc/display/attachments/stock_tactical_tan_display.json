@@ -1,0 +1,10 @@
+{
+  "slot": "ronmc:attachment/slot/stock_tactical_tan",
+  "model": "ronmc:attachment/stock_tactical_tan_geo",
+  "texture": "ronmc:attachment/uv/stock_tactical_tan",
+  "adapter": "ar_stock_adapter",
+  "sounds": {
+    "install": "tacz:attachments/attachment_general_a",
+    "uninstall": "tacz:attachments/attachment_general_uninstall"
+  }
+}

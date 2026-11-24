@@ -1,0 +1,9 @@
+{
+  "slot": "ronmc:attachment/slot/mp5a2_grip",
+  "model": "ronmc:attachment/mp5a2_grip",
+  "texture": "ronmc:attachment/uv/mp5a2_grip",
+  "sounds": {
+    "install": "tacz:attachments/attachment_general_b",
+    "uninstall": "tacz:attachments/attachment_general_uninstall"
+  }
+}

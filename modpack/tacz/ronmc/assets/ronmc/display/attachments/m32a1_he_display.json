@@ -1,0 +1,7 @@
+{
+  "slot": "ronmc:attachment/slot/m32a1_he",
+  "sounds": {
+    "install": "tacz:attachments/attachment_general_b",
+    "uninstall": "tacz:attachments/scope_general_e"
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "name": "ronmc.gun.m45a1.name",
+    "display": "ronmc:m45a1_display",
+    "data": "ronmc:m45a1_data",
+    "tooltip":"ronmc.gun.m45a1.desc",
+    "type": "pistol",
+    "sort": 1
+}

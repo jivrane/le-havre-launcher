@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.mkv.name",
+  "display": "ronmc:mkv_display",
+  "data": "ronmc:mkv_data",
+  "tooltip": "ronmc.gun.mkv.desc",
+  "type": "pistol"
+}

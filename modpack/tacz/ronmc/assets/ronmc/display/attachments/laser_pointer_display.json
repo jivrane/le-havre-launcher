@@ -1,0 +1,14 @@
+{
+  "slot": "ronmc:attachment/slot/laser_pointer",
+  "model": "ronmc:attachment/laser_pointer_geo",
+  "texture": "ronmc:attachment/uv/laser_nightstick",
+  "sounds": {
+    "install": "tacz:attachments/attachment_general_b",
+    "uninstall": "tacz:attachments/attachment_general_uninstall"
+  },
+  "laser": {
+    "default_color": "0xFF6060",
+    "can_edit": true,
+    "length": 75
+  }
+}

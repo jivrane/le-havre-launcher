@@ -1,0 +1,394 @@
+{
+  "_readme": "Bunker K-01 : SANDBOX DE MECANIQUES (scenario de test, aucun lore). Positions relatives a 'origin'. En solo : placez-vous sur un terrain plat, regardez vers le sud (+Z) et lancez /incursion place bunker_k01. Tous les ids test_* et les textes sont provisoires : le scenario definitif se fera en changeant uniquement ce fichier (zones, portes, objets, evenements, conditions, textes).",
+  "_parcours": "stage 0 entree -> 1 porte principale refermee derriere les joueurs -> 2 courant retabli (alarme, porte secondaire, terminal) -> 3 objet d'acces recupere (apres l'evenement hostile) -> 4 secteur profond atteint (evenement final) -> 5 sortie reactivee",
+  "id": "bunker_k01",
+  "name": "Bunker K-01",
+  "enabled": true,
+  "world": "minecraft:overworld",
+  "facility": "bunker_k01",
+  "origin": [1000, 70, -1000],
+  "activationRadius": 96,
+  "initialState": "AVAILABLE",
+
+  "systems": { "power": false },
+  "variables": { "stage": 0 },
+
+  "recovery": {
+    "_note": "Apres un redemarrage pendant l'ouverture : porte directement OPEN, donjon ACTIVE (aucune animation rejouee).",
+    "opening": { "policy": "COMPLETE", "state": "ACTIVE", "doors": ["main_gate"] },
+    "resetting": "COMPLETE"
+  },
+
+  "zones": [
+    { "id": "approach", "name": "Esplanade", "from": [-12, -2, -10], "to": [12, 10, 3] },
+    { "id": "gate_threshold", "name": "Seuil de la porte principale (zone de sécurité)", "from": [-3, 0, 3], "to": [3, 6, 6], "active": false },
+    { "id": "entrance", "name": "Sas d'entrée", "from": [-11, -1, 6], "to": [11, 8, 13] },
+    { "id": "security", "name": "Salle ouest", "from": [-11, -1, 15], "to": [-1, 8, 24] },
+    { "id": "maintenance", "name": "Maintenance", "from": [1, -1, 15], "to": [11, 8, 24] },
+    { "id": "generator", "name": "Salle du générateur", "from": [1, -1, 26], "to": [11, 8, 39] },
+    { "id": "deep_sector", "name": "Secteur profond", "from": [-11, -1, 27], "to": [-1, 8, 39], "active": false }
+  ],
+
+  "doors": [
+    {
+      "id": "main_gate", "name": "Porte principale", "type": "blast_door",
+      "from": [-3, 0, 4], "to": [3, 6, 5],
+      "accessLevel": 1, "initialState": "LOCKED",
+      "closedBlock": "minecraft:iron_block",
+      "_safety": "ne se referme jamais sur un joueur : attend que le volume de la porte et gate_threshold soient libres",
+      "safetyZone": "gate_threshold",
+      "_sync": "durationTicks = longueur de k01_door_open_full (17,11 s = 342 ticks) ; end_stop 0,18 s (4 ticks) apres l'arret",
+      "animation": { "type": "layered", "direction": "up", "durationTicks": 342 },
+      "sounds": {
+        "open": { "sound": "eternalz_incursions:door.k01_door_open_full", "volume": 2.0 },
+        "close": { "sound": "eternalz_incursions:door.k01_door_open_full", "volume": 2.0 },
+        "end": { "sound": "eternalz_incursions:door.k01_door_end_stop", "volume": 2.0 },
+        "endDelayTicks": 4
+      }
+    },
+    {
+      "id": "test_secondary_door", "name": "Porte secondaire (test)", "type": "security_door",
+      "_note": "passage sas -> salle ouest, deverrouille au retour du courant",
+      "from": [-8, 0, 14], "to": [-6, 2, 14],
+      "initialState": "LOCKED",
+      "closedBlock": "minecraft:iron_block",
+      "animation": { "type": "layered", "direction": "up", "durationTicks": 30 }
+    },
+    {
+      "id": "test_deep_door", "name": "Porte du secteur profond (test)", "type": "security_door",
+      "_note": "porte conditionnelle : ouverte par test_terminal seulement si le joueur porte test_access_item et que le courant est revenu",
+      "from": [-7, 0, 25], "to": [-5, 2, 26],
+      "initialState": "LOCKED",
+      "closedBlock": "minecraft:iron_block",
+      "animation": { "type": "layered", "direction": "up", "durationTicks": 30 },
+      "openConditions": [
+        { "type": "system_state", "id": "power" },
+        { "type": "has_item", "item": "test_access_item", "target": "player" }
+      ]
+    }
+  ],
+
+  "readers": [
+    { "id": "main_reader", "pos": [5, 1, 3], "facing": "north", "door": "main_gate", "accessLevel": 1, "requiredStates": ["AVAILABLE"] },
+    { "id": "exit_reader", "pos": [5, 1, 6], "facing": "south", "door": "main_gate", "accessLevel": 1, "enabled": true,
+      "_note": "desactive quand la porte se referme derriere les joueurs, reactive en fin de parcours",
+      "requiredStates": ["AVAILABLE", "OPENING", "ACTIVE", "ALERT", "COMPLETED", "FAILED", "LOCKDOWN"] }
+  ],
+
+  "terminals": [
+    { "id": "test_terminal", "name": "Terminal (test)", "pos": [-3, 0, 24], "facing": "north", "enabled": false,
+      "requiredStates": ["ACTIVE"], "cooldownTicks": 30, "disabledMessage": "&8Terminal hors ligne (pas de courant)." }
+  ],
+
+  "items": [
+    { "id": "test_access_item", "name": "&bObjet d'accès (test)", "lore": ["&7Élément provisoire du scénario de test."], "glow": true }
+  ],
+
+  "generators": [
+    { "id": "backup_generator", "name": "Générateur de secours", "pos": [8, 0, 35], "facing": "west",
+      "system": "power", "startupTicks": 157, "requiredStates": ["ACTIVE"],
+      "_sync": "startupTicks = longueur de generator_start (7,85 s = 157 ticks) : la boucle prend le relais a la fin du demarrage",
+      "sounds": {
+        "start": { "sound": "eternalz_incursions:generator.generator_start", "volume": 1.5 },
+        "loop": { "sound": "eternalz_incursions:generator.generator_running_loop", "volume": 1.0 },
+        "stop": { "sound": "eternalz_incursions:generator.generator_stop", "volume": 1.5 },
+        "loopRange": 24
+      } }
+  ],
+
+  "objectives": [
+    { "id": "restore_power", "name": "Rétablir le courant" },
+    { "id": "survive_hostile", "name": "Survivre à l'événement hostile (test)" },
+    { "id": "recover_access_item", "name": "Récupérer l'objet d'accès (test)", "type": "CONDITIONS",
+      "_note": "objectif a plusieurs conditions : evenement hostile survecu ET objet porte par un joueur du donjon",
+      "conditions": [
+        { "type": "objectives_complete", "ids": ["survive_hostile"] },
+        { "type": "has_item", "item": "test_access_item", "target": "dungeon" }
+      ] },
+    { "id": "reach_deep_sector", "name": "Atteindre le secteur profond" },
+    { "id": "survive_final", "name": "Survivre à l'événement final (test)" }
+  ],
+
+  "spawnGroups": [
+    { "id": "test_hostiles_a", "entity": "minecraft:husk", "count": 2, "positions": [[-9, 0, 17], [-3, 0, 21]], "spread": 1.0, "persistent": true },
+    { "id": "test_hostiles_b", "entity": "minecraft:husk", "count": 3, "positions": [[-8, 0, 31], [-4, 0, 34], [-7, 0, 38]], "spread": 1.0, "persistent": true }
+  ],
+
+  "events": [
+    {
+      "id": "test_hostile_event", "name": "Événement hostile (test)", "type": "SURVIVE", "durationTicks": 600, "zone": "security",
+      "_note": "SURVIVE : les joueurs presents dans la salle ouest au depart doivent y rester 30 s ; tous morts ou sortis = echec (recommencable)",
+      "onStart": [
+        { "type": "send_message", "target": "nearby", "mode": "title", "text": "&cÉVÉNEMENT HOSTILE (TEST)", "subtitle": "&7Tenez 30 s dans la salle", "stay": 50 },
+        { "type": "spawn_group", "group": "test_hostiles_a" },
+        { "type": "spawn_group", "delay": 300, "group": "test_hostiles_a" }
+      ],
+      "intervalTicks": 20,
+      "onTick": [ { "type": "send_message", "target": "zone:security", "mode": "actionbar", "text": "&cTenez encore {remaining} s" } ],
+      "onSuccess": [
+        { "type": "complete_objective", "objective": "survive_hostile" },
+        { "type": "drop_item", "item": "test_access_item", "at": [-6, 1, 20] },
+        { "type": "particles", "particle": "minecraft:happy_villager", "at": [-6, 1, 20], "count": 15, "spread": 0.4 },
+        { "type": "send_message", "target": "nearby", "mode": "actionbar", "text": "&aÉvénement survécu : un objet d'accès est apparu dans la salle." }
+      ],
+      "onFail": [
+        { "type": "send_message", "target": "nearby", "text": "&cÉvénement hostile échoué. Revenez dans la salle ouest pour recommencer." }
+      ]
+    },
+    {
+      "id": "test_final_event", "name": "Événement final (test)", "type": "SURVIVE", "durationTicks": 400, "zone": "deep_sector",
+      "onStart": [
+        { "type": "send_message", "target": "nearby", "mode": "title", "text": "&4ÉVÉNEMENT FINAL (TEST)", "subtitle": "&7Tenez 20 s dans le secteur profond", "stay": 50 },
+        { "type": "spawn_group", "group": "test_hostiles_b" }
+      ],
+      "intervalTicks": 20,
+      "onTick": [ { "type": "send_message", "target": "zone:deep_sector", "mode": "actionbar", "text": "&4Tenez encore {remaining} s" } ],
+      "onSuccess": [
+        { "type": "set_variable", "variable": "stage", "value": 5 },
+        { "type": "stop_loop_sound", "loop": "facility_alarm" },
+        { "type": "enable_reader", "reader": "exit_reader" },
+        { "type": "complete_objective", "objective": "survive_final" },
+        { "type": "send_message", "target": "nearby", "mode": "title", "text": "&aSORTIE RÉACTIVÉE", "subtitle": "&7Le lecteur de sortie répond de nouveau", "stay": 70 }
+      ],
+      "onFail": [
+        { "type": "send_message", "target": "nearby", "text": "&cÉvénement final échoué. Revenez dans le secteur profond pour recommencer." }
+      ]
+    }
+  ],
+
+  "greybox": [
+    { "_part": "coque du bunker", "block": "minecraft:stone_bricks", "from": [-12, -1, 4], "to": [12, 8, 40], "hollow": true },
+    { "_part": "facade epaisse (2 blocs, la porte la remplace)", "block": "minecraft:stone_bricks", "from": [-12, -1, 5], "to": [12, 8, 5] },
+    { "_part": "eclairage plafond ouest", "block": "minecraft:sea_lantern", "from": [-6, 8, 6], "to": [-6, 8, 39] },
+    { "_part": "eclairage plafond est", "block": "minecraft:sea_lantern", "from": [6, 8, 6], "to": [6, 8, 39] },
+    { "_part": "mur sas / ailes", "block": "minecraft:stone_bricks", "from": [-11, 0, 14], "to": [11, 7, 14] },
+    { "_part": "passage vers la salle ouest (test_secondary_door)", "block": "minecraft:air", "from": [-8, 0, 14], "to": [-6, 2, 14] },
+    { "_part": "passage vers maintenance", "block": "minecraft:air", "from": [6, 0, 14], "to": [8, 2, 14] },
+    { "_part": "cloison centrale", "block": "minecraft:stone_bricks", "from": [0, 0, 15], "to": [0, 7, 39] },
+    { "_part": "mur salle ouest / secteur profond (test_deep_door)", "block": "minecraft:stone_bricks", "from": [-11, 0, 25], "to": [-1, 7, 26] },
+    { "_part": "mur maintenance / generateur", "block": "minecraft:stone_bricks", "from": [1, 0, 25], "to": [11, 7, 25] },
+    { "_part": "passage vers le generateur", "block": "minecraft:air", "from": [5, 0, 25], "to": [7, 2, 25] }
+  ],
+
+  "triggers": [
+    {
+      "id": "badge_granted", "type": "PLAYER_USE_BADGE",
+      "conditions": [ { "type": "reader", "id": "main_reader" }, { "type": "access_result", "result": "GRANTED" } ],
+      "actions": [
+        { "type": "change_state", "state": "OPENING" },
+        { "type": "play_sound", "sound": "eternalz_incursions:access.badge_scan", "at": "trigger" },
+        { "type": "particles", "particle": "minecraft:electric_spark", "at": "trigger", "count": 10, "spread": 0.3 },
+        { "type": "send_message", "target": "player", "mode": "actionbar", "text": "&7IDENTIFICATION..." },
+        { "_sync": "fin de badge_scan (0,94 s = 19 ticks)", "type": "play_sound", "delay": 19, "sound": "eternalz_incursions:access.badge_granted", "at": "trigger" },
+        { "type": "particles", "delay": 19, "particle": "minecraft:happy_villager", "at": "trigger", "count": 8, "spread": 0.3 },
+        { "type": "send_message", "delay": 19, "target": "player", "mode": "actionbar", "text": "&aACCÈS AUTORISÉ" },
+        { "_sync": "fin de badge_granted (0,65 s) + 0,55 s = tick 43 : la porte joue k01_door_open_full", "type": "unlock_door", "delay": 43, "door": "main_gate" },
+        { "type": "open_door", "delay": 43, "door": "main_gate" },
+        { "type": "send_message", "delay": 43, "target": "nearby", "text": "&6[K-01] &eOuverture de la porte principale." }
+      ]
+    },
+    {
+      "id": "badge_denied", "type": "PLAYER_USE_BADGE",
+      "conditions": [ { "type": "access_result", "result": "GRANTED", "negate": true } ],
+      "actions": [
+        { "type": "play_sound", "sound": "eternalz_incursions:access.badge_scan", "at": "trigger" },
+        { "type": "play_sound", "delay": 19, "sound": "eternalz_incursions:access.badge_denied", "at": "trigger" },
+        { "type": "particles", "delay": 19, "particle": "minecraft:smoke", "at": "trigger", "count": 8, "spread": 0.2 }
+      ]
+    },
+    {
+      "id": "exit_disabled", "type": "PLAYER_USE_BADGE",
+      "conditions": [ { "type": "reader", "id": "exit_reader" }, { "type": "access_result", "result": "DISABLED" } ],
+      "actions": [ { "type": "send_message", "delay": 19, "target": "player", "text": "&cSortie verrouillée : terminez le parcours pour la réactiver (stage {stage}/5)." } ]
+    },
+    {
+      "id": "gate_opened", "type": "DOOR_STATE_CHANGED",
+      "conditions": [ { "type": "door", "id": "main_gate" }, { "type": "state_change", "to": "OPEN" }, { "type": "dungeon_state", "state": "OPENING" } ],
+      "actions": [
+        { "type": "change_state", "state": "ACTIVE" },
+        { "type": "send_message", "target": "nearby", "mode": "actionbar", "text": "&7La porte principale est ouverte." }
+      ]
+    },
+    {
+      "id": "gate_already_open", "type": "DUNGEON_STATE_CHANGED",
+      "conditions": [ { "type": "state_change", "to": "OPENING" }, { "type": "door_state", "door": "main_gate", "state": "OPEN" } ],
+      "actions": [ { "type": "change_state", "state": "ACTIVE" } ]
+    },
+
+    {
+      "id": "auto_close_main_gate", "type": "ENTER_ZONE",
+      "_note": "fermeture automatique apres franchissement : un joueur entre dans le sas alors que plus personne n'est dehors",
+      "conditions": [
+        { "type": "zone", "id": "entrance" }, { "type": "variable", "id": "stage", "equals": 0 },
+        { "type": "dungeon_state", "state": "ACTIVE" }, { "type": "door_state", "door": "main_gate", "state": "OPEN" },
+        { "type": "zone_players", "zone": "approach", "max": 0 }
+      ],
+      "actions": [
+        { "type": "disable_reader", "reader": "exit_reader" },
+        { "type": "send_message", "target": "nearby", "mode": "actionbar", "text": "&7La porte principale se referme derrière vous..." },
+        { "type": "lock_door", "delay": 40, "door": "main_gate" }
+      ]
+    },
+    {
+      "id": "main_gate_obstructed", "type": "DOOR_OBSTRUCTED", "cooldownTicks": 60,
+      "conditions": [ { "type": "door", "id": "main_gate" } ],
+      "actions": [ { "type": "send_message", "target": "nearby", "mode": "actionbar", "text": "&eDégagez le passage : la fermeture attend." } ]
+    },
+    {
+      "id": "main_gate_sealed", "type": "DOOR_STATE_CHANGED",
+      "conditions": [
+        { "type": "door", "id": "main_gate" }, { "type": "state_change", "to": "LOCKED" },
+        { "type": "variable", "id": "stage", "equals": 0 }, { "type": "dungeon_state", "state": "ACTIVE" }
+      ],
+      "actions": [
+        { "type": "set_variable", "variable": "stage", "value": 1 },
+        { "type": "send_message", "target": "nearby", "mode": "actionbar", "text": "&7La porte principale est verrouillée. Trouvez le générateur." }
+      ]
+    },
+    {
+      "id": "exit_airlock", "type": "PLAYER_USE_BADGE",
+      "conditions": [
+        { "type": "reader", "id": "exit_reader" }, { "type": "access_result", "result": "GRANTED" },
+        { "type": "door_state", "door": "main_gate", "state": ["LOCKED", "UNLOCKED", "CLOSED"] }
+      ],
+      "actions": [
+        { "type": "play_sound", "sound": "eternalz_incursions:access.badge_scan", "at": "trigger" },
+        { "type": "play_sound", "delay": 19, "sound": "eternalz_incursions:access.badge_granted", "at": "trigger" },
+        { "type": "send_message", "delay": 19, "target": "player", "mode": "actionbar", "text": "&7Ouverture de la sortie..." },
+        { "type": "open_door", "delay": 43, "door": "main_gate", "force": true },
+        { "_sync": "43 + 342 (ouverture) + 200 (10 s ouverte)", "type": "lock_door", "delay": 585, "door": "main_gate" }
+      ]
+    },
+
+    {
+      "id": "approach_sealed", "type": "ENTER_ZONE", "cooldownTicks": 200,
+      "conditions": [ { "type": "zone", "id": "approach" }, { "type": "dungeon_state", "state": "AVAILABLE" } ],
+      "actions": [ { "type": "send_message", "target": "player", "mode": "actionbar", "text": "&8Porte scellée. Un lecteur de badge clignote." } ]
+    },
+    {
+      "id": "entrance_dark", "type": "ENTER_ZONE", "cooldownTicks": 300,
+      "conditions": [ { "type": "zone", "id": "entrance" }, { "type": "system_state", "id": "power", "on": false } ],
+      "actions": [ { "type": "send_message", "target": "player", "mode": "title", "text": "&4BUNKER K-01", "subtitle": "&7Aucune alimentation — trouvez le générateur", "stay": 60 } ]
+    },
+    {
+      "id": "maintenance_hint", "type": "ENTER_ZONE", "cooldownTicks": 200,
+      "conditions": [ { "type": "zone", "id": "maintenance" }, { "type": "system_state", "id": "power", "on": false } ],
+      "actions": [ { "type": "send_message", "target": "player", "mode": "actionbar", "text": "&7Le générateur est au fond." } ]
+    },
+    {
+      "id": "generator_hint", "type": "ENTER_ZONE", "cooldownTicks": 200,
+      "conditions": [ { "type": "zone", "id": "generator" }, { "type": "generator_state", "generator": "backup_generator", "state": "OFF" } ],
+      "actions": [ { "type": "send_message", "target": "player", "mode": "actionbar", "text": "&eGénérateur : interagissez pour le démarrer." } ]
+    },
+    {
+      "id": "generator_starting", "type": "GENERATOR_STATE_CHANGED",
+      "conditions": [ { "type": "generator", "id": "backup_generator" }, { "type": "state_change", "to": "STARTING" } ],
+      "actions": [
+        { "type": "send_message", "target": "player", "mode": "actionbar", "text": "&eDémarrage du générateur..." },
+        { "type": "particles", "particle": "minecraft:large_smoke", "at": "trigger", "count": 15, "spread": 0.4 },
+        { "type": "particles", "delay": 60, "particle": "minecraft:large_smoke", "at": "trigger", "count": 15, "spread": 0.4 }
+      ]
+    },
+    {
+      "id": "generator_running", "type": "GENERATOR_STATE_CHANGED",
+      "conditions": [ { "type": "generator", "id": "backup_generator" }, { "type": "state_change", "to": "ON" } ],
+      "actions": [ { "type": "particles", "particle": "minecraft:electric_spark", "at": "trigger", "count": 30, "spread": 0.6 } ]
+    },
+    {
+      "id": "power_restored", "type": "SYSTEM_CHANGED",
+      "conditions": [ { "type": "system", "id": "power" }, { "type": "state_change", "to": "ON" } ],
+      "actions": [
+        { "type": "complete_objective", "objective": "restore_power" },
+        { "type": "set_variable", "variable": "stage", "value": 2 },
+        { "type": "send_message", "target": "nearby", "mode": "title", "text": "&aCOURANT RÉTABLI", "subtitle": "&7Porte secondaire et terminal activés", "stay": 70 },
+        { "type": "start_loop_sound", "loop": "facility_alarm", "sound": "eternalz_incursions:alarm.facility_failure_alarm_loop", "at": [0, 4, 22], "volume": 1.0, "range": 48 },
+        { "type": "enable_terminal", "terminal": "test_terminal" },
+        { "type": "unlock_door", "door": "test_secondary_door" },
+        { "type": "open_door", "delay": 20, "door": "test_secondary_door" }
+      ]
+    },
+    {
+      "id": "hostile_event_start", "type": "ENTER_ZONE",
+      "conditions": [
+        { "type": "zone", "id": "security" }, { "type": "variable", "id": "stage", "equals": 2 },
+        { "type": "objectives_complete", "ids": ["survive_hostile"], "negate": true },
+        { "type": "event_running", "event": "test_hostile_event", "negate": true }
+      ],
+      "actions": [ { "type": "start_event", "event": "test_hostile_event" } ]
+    },
+    {
+      "id": "access_item_picked", "type": "PICKUP_ITEM",
+      "conditions": [ { "type": "item", "id": "test_access_item" }, { "type": "variable", "id": "stage", "max": 2 } ],
+      "actions": [
+        { "type": "set_variable", "variable": "stage", "value": 3 },
+        { "type": "play_sound", "sound": "eternalz_incursions:access.badge_granted", "at": "player", "audience": "player" },
+        { "type": "send_message", "target": "player", "mode": "actionbar", "text": "&bObjet d'accès récupéré : utilisez le terminal près de la porte du fond." }
+      ]
+    },
+    {
+      "id": "terminal_used", "type": "INTERACT_TERMINAL",
+      "conditions": [ { "type": "terminal", "id": "test_terminal" } ],
+      "actions": [
+        { "type": "play_sound", "sound": "eternalz_incursions:access.badge_scan", "at": "trigger" },
+        { "type": "send_message", "target": "player", "mode": "actionbar", "text": "&7Vérification de l'objet d'accès..." },
+        { "_note": "porte conditionnelle : ses openConditions decident (DOOR_OPEN_REFUSED sinon)", "type": "open_door", "delay": 19, "door": "test_deep_door", "force": true }
+      ]
+    },
+    {
+      "id": "deep_door_refused", "type": "DOOR_OPEN_REFUSED",
+      "conditions": [ { "type": "door", "id": "test_deep_door" } ],
+      "actions": [
+        { "type": "play_sound", "sound": "eternalz_incursions:access.badge_denied", "at": "trigger" },
+        { "type": "send_message", "target": "player", "mode": "actionbar", "text": "&cAccès refusé : objet d'accès requis." }
+      ]
+    },
+    {
+      "id": "deep_door_opening", "type": "DOOR_STATE_CHANGED",
+      "conditions": [ { "type": "door", "id": "test_deep_door" }, { "type": "state_change", "to": "OPENING" } ],
+      "actions": [
+        { "type": "play_sound", "sound": "eternalz_incursions:access.badge_granted", "at": "door:test_deep_door" },
+        { "type": "activate_zone", "zone": "deep_sector" },
+        { "type": "send_message", "target": "nearby", "mode": "actionbar", "text": "&7Le secteur profond s'ouvre." }
+      ]
+    },
+    {
+      "id": "deep_reached", "type": "ENTER_ZONE",
+      "conditions": [ { "type": "zone", "id": "deep_sector" }, { "type": "variable", "id": "stage", "equals": 3 } ],
+      "actions": [
+        { "type": "complete_objective", "objective": "reach_deep_sector" },
+        { "type": "set_variable", "variable": "stage", "value": 4 }
+      ]
+    },
+    {
+      "id": "final_event_start", "type": "ENTER_ZONE",
+      "conditions": [
+        { "type": "zone", "id": "deep_sector" }, { "type": "variable", "id": "stage", "equals": 4 },
+        { "type": "event_running", "event": "test_final_event", "negate": true }
+      ],
+      "actions": [ { "type": "start_event", "event": "test_final_event" } ]
+    },
+    {
+      "id": "incursion_completed", "type": "OBJECTIVE_COMPLETE",
+      "conditions": [ { "type": "objectives_complete" }, { "type": "dungeon_state", "state": "ACTIVE" } ],
+      "actions": [
+        { "type": "change_state", "state": "COMPLETED" },
+        { "type": "send_message", "target": "nearby", "text": "&a[TEST] Parcours terminé : ressortez par le lecteur de sortie." }
+      ]
+    },
+    {
+      "id": "stage_trace", "type": "VARIABLE_CHANGED",
+      "conditions": [ { "type": "variable_changed", "id": "stage" } ],
+      "actions": [ { "type": "send_message", "target": "nearby", "text": "&8[TEST] stage = {stage}" } ]
+    },
+    {
+      "id": "reset_notice", "type": "DUNGEON_STATE_CHANGED",
+      "conditions": [ { "type": "state_change", "to": "RESETTING" } ],
+      "actions": [ { "type": "send_message", "target": "nearby", "text": "&8[K-01] Réinitialisation complète..." } ]
+    },
+    {
+      "id": "recovered_power", "type": "DUNGEON_RECOVERED",
+      "conditions": [ { "type": "system_state", "id": "power" } ],
+      "actions": [ { "type": "complete_objective", "objective": "restore_power" } ]
+    }
+  ]
+}

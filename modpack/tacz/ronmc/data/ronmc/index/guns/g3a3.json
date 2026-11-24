@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.g3a3.name",
+  "display": "ronmc:g3a3_display",
+  "data": "ronmc:g3a3_data",
+  "tooltip": "ronmc.gun.g3a3.desc",
+  "type": "rifle",
+  "sort": 3
+}

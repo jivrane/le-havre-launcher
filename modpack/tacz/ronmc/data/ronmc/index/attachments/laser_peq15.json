@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.attachment.laser_peq15.name",
+  "display": "ronmc:laser_peq15_display",
+  "data": "ronmc:laser_peq15_data",
+  "type": "laser",
+  "sort": 1,
+  "hidden": false
+}

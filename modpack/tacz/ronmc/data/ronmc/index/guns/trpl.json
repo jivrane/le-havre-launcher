@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.trpl.name",
+  "display": "ronmc:trpl_display",
+  "data": "ronmc:trpl_data",
+  "tooltip": "ronmc.gun.trpl.desc",
+  "type": "pistol"
+}

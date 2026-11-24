@@ -1,0 +1,9 @@
+{
+  "slot": "ronmc:attachment/slot/tac_laser",
+  "model": "ronmc:attachment/tac_laser_geo",
+  "texture": "ronmc:attachment/uv/tac_laser",
+  "sounds": {
+    "install": "tacz:attachments/scope_general_c",
+    "uninstall": "tacz:attachments/scope_general_c"
+  }
+}

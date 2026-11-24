@@ -1,0 +1,16 @@
+{
+  "usage_time": 1,
+  "number_of_uses": 1,
+  "stack_size": 1,
+  "clear_bad_effects": false,
+  "effect_1": "minecraft:absorption 125 1",
+  "effect_2": "minecraft:health_boost 60",
+  "effect_3": "minecraft:hunger 160 2",
+  "effect_4": "",
+  "effect_5": "",
+  "effect_6": "",
+  "effect_7": "",
+  "effect_8": "",
+  "effect_9": "",
+  "effect_10": ""
+}

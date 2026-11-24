@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.arwc.name",
+  "display": "ronmc:arwc_display",
+  "data": "ronmc:arwc_data",
+  "tooltip": "ronmc.gun.arwc.desc",
+  "type": "rifle",
+  "sort": 2
+}

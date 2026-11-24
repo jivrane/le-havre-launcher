@@ -1,0 +1,9 @@
+{
+    "name": "ronmc.gun.m1014.name",
+    "display": "ronmc:m1014_display",
+    "data": "ronmc:m1014_data",
+    "tooltip": "ronmc.gun.m1014.desc",
+    "type": "shotgun",
+    "item_type": "modern_kinetic",
+    "sort": 1
+}

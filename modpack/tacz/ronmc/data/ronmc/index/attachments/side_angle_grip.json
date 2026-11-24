@@ -1,0 +1,6 @@
+{
+  "name": "ronmc.attachment.side_angle_grip.name",
+  "display": "ronmc:side_angle_grip_display",
+  "data": "ronmc:side_angle_grip_data",
+  "type": "grip"
+}

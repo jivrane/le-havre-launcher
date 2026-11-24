@@ -1,0 +1,29 @@
+{
+  "model": "ronmc:ammo/762x51",
+  "texture": "ronmc:ammo/uv/762x51",
+  "slot": "ronmc:ammo/slot/762x51",
+  "shell": {
+    "model": "ronmc:shell/762x51_shell",
+    "texture": "ronmc:shell/762x51_shell"
+  },
+  "tracer_color": "#FF9999",
+  "transform": {
+    "scale": {
+      "thirdperson": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "ground": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "fixed": [
+        1.5,
+        1.5,
+        1.5
+      ]
+    }
+  }
+}

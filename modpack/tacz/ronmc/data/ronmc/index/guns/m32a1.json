@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.m32a1.name",
+  "display": "ronmc:m32a1_display",
+  "data": "ronmc:m32a1_data",
+  "tooltip": "ronmc.gun.m32a1.desc",
+  "type": "rpg"
+}

@@ -1,0 +1,24 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:ingots/gold"
+      },
+      "count": 18
+    },
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 70
+    }
+  ],
+  "result": {
+    "type": "gun",
+    "id": "ronmc:sa58",
+    "attachments": {
+      "stock": "tacz:stock_hk_slim_line"
+    }
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}

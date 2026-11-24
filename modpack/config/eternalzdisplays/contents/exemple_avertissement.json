@@ -1,0 +1,23 @@
+{
+  "_aide": "Exemple de contenu. L'identifiant est le nom du fichier. Les cles qui commencent par _ sont des commentaires.",
+  "_aide_calques": "Les calques se placent en fractions (0 a 1) de la zone d'affichage : x, y depuis le coin haut-gauche, width, height.",
+  "_aide_texte": "Codes : &0-&9 &a-&f couleurs, &l gras, &o italique, &n souligne, &m barre, &r normal, &#RRGGBB couleur libre, && pour &.",
+  "schema": 1,
+  "title": "Avertissement - zone contaminee",
+  "layers": [
+    {
+      "type": "text",
+      "y": 0.05,
+      "height": 0.35,
+      "lines": ["&4&lDANGER"],
+      "maxSize": 10
+    },
+    {
+      "type": "text",
+      "y": 0.42,
+      "height": 0.55,
+      "lines": ["Zone contaminee.", "Masque obligatoire au-dela de ce point.", "&8- Commandement EternalZ -"],
+      "maxSize": 4
+    }
+  ]
+}

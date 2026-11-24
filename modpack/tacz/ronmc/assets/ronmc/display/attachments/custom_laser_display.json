@@ -1,0 +1,14 @@
+{
+  "slot": "ronmc:attachment/slot/custom_laser",
+  "model": "ronmc:attachment/custom_laser_geo",
+  "texture": "ronmc:attachment/uv/custom_laser",
+  "sounds": {
+    "install": "tacz:attachments/attachment_general_b",
+    "uninstall": "tacz:attachments/attachment_general_uninstall"
+  },
+  "laser": {
+    "default_color": "0xFF6060",
+    "can_edit": true,
+    "length": 75
+  }
+}

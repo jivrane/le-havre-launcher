@@ -1,0 +1,137 @@
+{
+  // 配方过滤器，具体内容位于 data/<命名空间>/recipe_filters 下
+  // 如果没有指定，将使用默认过滤器 tacz:default
+  "filter": "ronmc:gun_locker",
+  "tabs": [
+    {
+      "id": "tacz:ammo",
+      "name": "tacz.type.ammo.name",
+      "icon": {
+        "item": "tacz:ammo",
+        "nbt": {
+          "AmmoId": "ronmc:bean_bag"
+        }
+      }
+    },
+    {
+      "id": "tacz:pistol",
+      "name": "tacz.type.pistol.name",
+      "icon": {
+        "item": "tacz:modern_kinetic_gun",
+        "nbt": {
+          "GunId": "ronmc:trpl"
+        }
+      }
+    },
+    {
+      "id": "tacz:rifle",
+      "name": "tacz.type.rifle.name",
+      "icon": {
+        "item": "tacz:modern_kinetic_gun",
+        "nbt": {
+          "GunId": "ronmc:lvar"
+        }
+      }
+    },
+    {
+      "id": "tacz:shotgun",
+      "name": "tacz.type.shotgun.name",
+      "icon": {
+        "item": "tacz:modern_kinetic_gun",
+        "nbt": {
+          "GunId": "ronmc:entryman"
+        }
+      }
+    },
+    {
+      "id": "tacz:smg",
+      "name": "tacz.type.smg.name",
+      "icon": {
+        "item": "tacz:modern_kinetic_gun",
+        "nbt": {
+          "GunId": "ronmc:mp5a3"
+        }
+      }
+    },
+    {
+      "id": "tacz:rpg",
+      "name": "tacz.type.rpg.name",
+      "icon": {
+        "item": "tacz:modern_kinetic_gun",
+        "nbt": {
+          "GunId": "ronmc:m32a1"
+        }
+      }
+    },
+    {
+      "id": "tacz:misc",
+      "name": "ronmc.type.misc.name",
+      "icon": {
+        "item": "tacz:modern_kinetic_gun",
+        "nbt": {
+          "GunId": "ronmc:beanbag_shot"
+        }
+      }
+    },
+    {
+      "id": "tacz:scope",
+      "name": "tacz.type.scope.name",
+      "icon": {
+        "item": "tacz:attachment",
+        "nbt": {
+          "AttachmentId": "ronmc:sro_dot"
+        }
+      }
+    },
+    {
+      "id": "tacz:muzzle",
+      "name": "tacz.type.muzzle.name",
+      "icon": {
+        "item": "tacz:attachment",
+        "nbt": {
+          "AttachmentId": "ronmc:spread_choke"
+        }
+      }
+    },
+    {
+      "id": "tacz:stock",
+      "name": "tacz.type.stock.name",
+      "icon": {
+        "item": "tacz:attachment",
+        "nbt": {
+          "AttachmentId": "ronmc:stock_tactical_tan"
+        }
+      }
+    },
+    {
+      "id": "tacz:grip",
+      "name": "tacz.type.grip.name",
+      "icon": {
+        "item": "tacz:attachment",
+        "nbt": {
+          "AttachmentId": "ronmc:mp5a2_grip"
+        }
+      }
+    },
+    {
+      "id": "tacz:laser",
+      "name": "tacz.type.laser.name",
+      "icon": {
+        "item": "tacz:attachment",
+        "nbt": {
+          "AttachmentId": "ronmc:laser_peq15"
+        }
+      }
+    },
+    {
+      "id": "tacz:extended_mag",
+      "name": "tacz.type.extended_mag.name",
+      "icon": {
+        "item": "tacz:attachment",
+        "nbt": {
+          "AttachmentId": "ronmc:m32a1_he"
+        }
+      }
+    }
+  ]
+}

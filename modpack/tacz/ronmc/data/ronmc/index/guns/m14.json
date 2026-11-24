@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.m14.name",
+  "display": "ronmc:m14_display",
+  "data": "ronmc:m14_data",
+  "tooltip": "ronmc.gun.m14.desc",
+  "type": "rifle",
+  "sort": 4
+}

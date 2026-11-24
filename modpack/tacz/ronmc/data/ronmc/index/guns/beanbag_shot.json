@@ -1,0 +1,9 @@
+{
+    "name": "ronmc.gun.beanbag_shot.name",
+    "display": "ronmc:beanbag_shot_display",
+    "data": "ronmc:beanbag_shot_data",
+    "tooltip": "ronmc.gun.beanbag_shot.desc",
+    "type": "shotgun",
+    "item_type": "modern_kinetic",
+    "sort": 1
+}

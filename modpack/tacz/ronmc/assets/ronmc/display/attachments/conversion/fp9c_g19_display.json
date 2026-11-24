@@ -1,0 +1,9 @@
+{
+  "slot": "ronmc:attachment/slot/conversion/fp9c_g19",
+  "model": "ronmc:attachment/conversion/fp9c_g19_geo",
+  "texture": "ronmc:attachment/uv/conversion/fp9c_g19",
+  "sounds": {
+    "install": "tacz:attachments/attachment_general_a",
+    "uninstall": "tacz:attachments/attachment_general_uninstall"
+  }
+}

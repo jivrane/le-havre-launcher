@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.f90.name",
+  "display": "ronmc:f90_display",
+  "data": "ronmc:f90_data",
+  "type": "rifle",
+  "tooltip": "ronmc.gun.f90.desc",
+  "sort": 10
+}

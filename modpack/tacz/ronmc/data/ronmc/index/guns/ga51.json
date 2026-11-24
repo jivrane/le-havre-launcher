@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.ga51.name",
+  "display": "ronmc:ga51_display",
+  "data": "ronmc:ga51_data",
+  "tooltip": "ronmc.gun.ga51.desc",
+  "type": "rifle",
+  "sort": 3
+}

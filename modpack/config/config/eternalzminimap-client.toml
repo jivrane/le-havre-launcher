@@ -1,0 +1,33 @@
+
+#Limites réelles du monde EternalZ (blocs Minecraft). X : ouest -> est, Z : nord (négatif) -> sud.
+#minX = bord GAUCHE de la zone utile, maxX = bord DROIT, minZ = HAUT, maxZ = BAS.
+#Ne pas modifier pour corriger un décalage : utiliser la section [calibration].
+[bounds]
+	#Range: -30000000 ~ 30000000
+	minX = -33064
+	#Range: -30000000 ~ 30000000
+	maxX = -28456
+	#Range: -30000000 ~ 30000000
+	minZ = -9248
+	#Range: -30000000 ~ 30000000
+	maxZ = -4720
+
+#Zone utile de la carte de RÉFÉRENCE (reference/eternalz_map_reference.png, 1254x1254), en fraction
+#de sa largeur / hauteur : le rectangle de l'image qui correspond exactement aux limites [bounds].
+#Les cartes affichées (gps_map.png, paper_map.png) sont recalées sur cette référence dans le code
+#(MapImages) : cette calibration vaut pour les deux. Ne la modifier que pour corriger un décalage global.
+[calibration]
+	#Range: -1.0 ~ 2.0
+	mapContentLeft = 0.0167
+	#Range: -1.0 ~ 2.0
+	mapContentRight = 1.0132
+	#Range: -1.0 ~ 2.0
+	mapContentTop = 0.0021
+	#Range: -1.0 ~ 2.0
+	mapContentBottom = 0.986
+
+[debug]
+	#Mode calibration : X / Z, UV, coordonnées écran, bounds et zone de clipping dans le GPS et sur la
+	#carte papier, et un log de position toutes les 5 secondes (si le joueur a bougé).
+	debugMap = false
+

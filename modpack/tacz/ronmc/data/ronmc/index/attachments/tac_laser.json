@@ -1,0 +1,7 @@
+{
+  "name": "RoN Test Laser",
+  "display": "ronmc:tac_laser_display",
+  "data": "ronmc:tac_laser_data",
+  "type": "grip",
+  "hidden": true
+}

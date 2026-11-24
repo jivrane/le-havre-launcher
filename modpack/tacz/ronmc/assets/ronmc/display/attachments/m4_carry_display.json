@@ -1,0 +1,16 @@
+{
+  "slot": "ronmc:attachment/slot/m4_carry",
+  "model": "ronmc:attachment/m4_carry_geo",
+  "texture": "ronmc:attachment/uv/m4_carry",
+  "lod": {
+    "model": "ronmc:attachment/lod/m4_carry",
+    "texture": "ronmc:attachment/lod/m4_carry"
+  },
+  "scope": true,
+  "sight": true,
+  "fov": 70.0,
+  "sounds": {
+    "install": "tacz:attachments/scope_general_e",
+    "uninstall": "tacz:attachments/scope_general_e"
+  }
+}

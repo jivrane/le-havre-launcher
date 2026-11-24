@@ -1,0 +1,21 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:gems/quartz"
+      },
+      "count": 8
+    },
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 16
+    }
+  ],
+  "result": {
+    "type": "gun",
+    "id": "ronmc:sti_2011"
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}

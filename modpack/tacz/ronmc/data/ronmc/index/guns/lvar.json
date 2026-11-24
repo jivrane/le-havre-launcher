@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.hk416.name",
+  "display": "ronmc:lvar_display",
+  "data": "ronmc:lvar_data",
+  "type": "rifle",
+  "tooltip": "ronmc.gun.hk416.desc",
+  "sort": 2
+}

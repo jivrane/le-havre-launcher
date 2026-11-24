@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.m11.name",
+  "display": "ronmc:m11_display",
+  "data": "ronmc:m11_data",
+  "tooltip": "ronmc.gun.m11.desc",
+  "type": "pistol"
+}

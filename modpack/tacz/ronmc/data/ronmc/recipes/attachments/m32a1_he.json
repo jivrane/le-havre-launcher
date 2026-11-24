@@ -1,0 +1,21 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 15
+    },
+    {
+      "item": {
+        "tag": "forge:gunpowder"
+      },
+      "count": 10
+    }
+  ],
+  "result": {
+    "type": "attachment",
+    "id": "ronmc:m32a1_he"
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}

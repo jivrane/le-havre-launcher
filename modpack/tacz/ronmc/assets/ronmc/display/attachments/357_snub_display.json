@@ -1,0 +1,9 @@
+{
+  "slot": "ronmc:attachment/slot/snub",
+  "model": "ronmc:attachment/357_snub_geo",
+  "texture": "ronmc:attachment/uv/357_snub",
+  "sounds": {
+    "install": "tacz:attachments/attachment_general_a",
+    "uninstall": "tacz:attachments/attachment_general_uninstall"
+  }
+}

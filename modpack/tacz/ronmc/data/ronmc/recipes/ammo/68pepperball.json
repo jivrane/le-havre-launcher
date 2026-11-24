@@ -1,0 +1,22 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 10
+    },
+    {
+      "item": {
+        "tag": "forge:dusts/redstone"
+      },
+      "count": 11
+    }
+  ],
+  "result": {
+    "type": "ammo",
+    "id": "ronmc:68pepperball",
+    "count": 32
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}

@@ -1,0 +1,10 @@
+{
+  "_aide": "Exemple avec une image : le calque image designe un fichier de config/eternalzdisplays/images (nom sans extension).",
+  "_aide_image": "fit : contain (image entiere), cover (zone remplie, bords rognes) ou stretch (deformee). opacity de 0 a 1. smooth : false pour du pixel art.",
+  "schema": 1,
+  "title": "Danger radiations (image)",
+  "layers": [
+    { "type": "image", "image": "exemple_radiation", "y": 0.0, "height": 0.72, "fit": "contain" },
+    { "type": "text", "y": 0.76, "height": 0.24, "lines": ["&4&lRADIATIONS", "Acces interdit sans protection."], "maxSize": 5 }
+  ]
+}

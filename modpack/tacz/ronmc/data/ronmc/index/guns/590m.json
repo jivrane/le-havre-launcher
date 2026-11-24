@@ -1,0 +1,9 @@
+{
+    "name": "ronmc.gun.590m.name",
+    "display": "ronmc:590m_display",
+    "data": "ronmc:590m_data",
+    "tooltip": "ronmc.gun.590m.desc",
+    "type": "shotgun",
+    "item_type": "modern_kinetic",
+    "sort": 1
+}

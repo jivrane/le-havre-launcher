@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.attachment.canted.name",
+  "tooltip": "ronmc.attachment.canted.desc",
+  "display": "ronmc:canted_display",
+  "data": "ronmc:canted_data",
+  "type": "scope"
+}

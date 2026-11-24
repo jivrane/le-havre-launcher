@@ -1,0 +1,21 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 15
+    },
+    {
+      "item": {
+        "tag": "forge:gems/lapis"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "type": "gun",
+    "id": "ronmc:trpl"
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.sr16.name",
+  "display": "ronmc:sr16_display",
+  "data": "ronmc:sr16_data",
+  "tooltip": "ronmc.gun.sr16.desc",
+  "type": "rifle",
+  "sort": 2
+}

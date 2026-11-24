@@ -1,0 +1,16 @@
+{
+  "usage_time": 1,
+  "number_of_uses": 1,
+  "stack_size": 1,
+  "clear_bad_effects": true,
+  "effect_1": "minecraft:instant_health",
+  "effect_2": "minecraft:regeneration 50 1",
+  "effect_3": "minecraft:hunger 125 3",
+  "effect_4": "minecraft:blindness 1",
+  "effect_5": "minecraft:nausea 10",
+  "effect_6": "",
+  "effect_7": "",
+  "effect_8": "",
+  "effect_9": "",
+  "effect_10": ""
+}

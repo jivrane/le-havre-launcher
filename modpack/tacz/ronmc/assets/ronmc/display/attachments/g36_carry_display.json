@@ -1,0 +1,16 @@
+{
+  "slot": "ronmc:attachment/slot/g36_carry",
+  "model": "ronmc:attachment/g36_carry_geo",
+  "texture": "ronmc:attachment/uv/g36_carry",
+  "lod": {
+    "model": "ronmc:attachment/lod/g36_carry",
+    "texture": "ronmc:attachment/lod/g36_carry"
+  },
+  "scope": true,
+  "sight": true,
+  "fov": 70.0,
+  "sounds": {
+    "install": "tacz:attachments/scope_general_e",
+    "uninstall": "tacz:attachments/scope_general_e"
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "name": "ronmc.gun.entryman.name",
+    "display": "ronmc:entryman_display",
+    "data": "ronmc:entryman_data",
+    "tooltip": "ronmc.gun.entryman.desc",
+    "type": "shotgun",
+    "item_type": "modern_kinetic",
+    "sort": 1
+}

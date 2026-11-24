@@ -1,0 +1,29 @@
+{
+  "model": "ronmc:ammo/train_556x45",
+  "texture": "ronmc:ammo/uv/train_556x45",
+  "slot": "ronmc:ammo/slot/train_556x45",
+  "shell": {
+    "model": "ronmc:shell/train_556x45_shell",
+    "texture": "ronmc:shell/train_556x45_shell"
+  },
+  "tracer_color": "#FF9999",
+  "transform": {
+    "scale": {
+      "thirdperson": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "ground": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "fixed": [
+        1.5,
+        1.5,
+        1.5
+      ]
+    }
+  }
+}

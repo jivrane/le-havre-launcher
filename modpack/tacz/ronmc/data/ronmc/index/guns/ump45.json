@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.ump45.name",
+  "display": "ronmc:ump45_display",
+  "data": "ronmc:ump45_data",
+  "tooltip": "ronmc.gun.ump45.desc",
+  "type": "smg"
+}

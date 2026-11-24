@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.p90.name",
+  "display": "ronmc:p90_display",
+  "data": "ronmc:p90_data",
+  "tooltip": "ronmc.gun.p90.desc",
+  "type": "smg"
+}

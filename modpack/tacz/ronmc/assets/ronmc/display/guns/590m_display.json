@@ -1,0 +1,58 @@
+{
+  "model": "ronmc:gun/590m_geo",
+  "texture": "ronmc:gun/uv/590m",
+  "lod": {
+    "model": "ronmc:gun/lod/590m",
+    "texture": "ronmc:gun/lod/590m"
+  },
+  "hud": "ronmc:gun/hud/590m",
+  "slot": "ronmc:gun/slot/590m",
+  "animation": "ronmc:590m",
+  "state_machine": "ronmc:st_mag_state_machine",
+  "state_machine_param": {
+    "bolt_shell_ejecting_time": 0.17,
+    "intro_shell_ejecting_time": 0.25
+  },
+  "use_default_animation": "rifle",
+  "third_person_animation": "default",
+  "transform": {
+    "scale": {
+      "thirdperson": [0.6, 0.6, 0.6],
+      "ground": [0.6, 0.6, 0.6],
+      "fixed": [1.2, 1.2, 1.2]
+    }
+  },
+  "muzzle_flash": {
+    "texture": "tacz:flash/common_muzzle_flash",
+    "scale": 0.75
+  },
+  "shell": {
+    "initial_velocity": [5, 2, 1],
+    "random_velocity": [1, 1, 0.25],
+    "acceleration": [0.0, -10, 0.0],
+    "angular_velocity": [360, -1200, 90],
+    "living_time": 1.0
+  },
+  "sounds": {
+    "shoot": "ronmc:590m/590m_shoot",
+    "shoot_3p": "ronmc:590m/590m_shoot_3p",
+    "inspect": "ronmc:590m/590m_inspect",
+    "inspect_empty": "ronmc:590m/590m_inspect",
+    "draw": "ronmc:590m/590m_draw",
+    "put_away": "ronmc:590m/590m_put_away",
+    "melee_push": "tacz:melee_stock/melee_stock_01",
+    "melee_stock": "tacz:melee_stock/melee_stock_02"
+  },
+  "offhand_show": {
+    "pos": [1, 19, 4],
+    "rotate": [0, 0, 50],
+    "scale": [0.5, 0.5, 0.5]
+  },
+  "hotbar_show": {
+    "0": {
+      "pos": [-1, 19, 3],
+      "rotate": [-180, 0, 130],
+      "scale": [0.5, 0.5, 0.5]
+    }
+  }
+}

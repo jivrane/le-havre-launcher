@@ -1,0 +1,9 @@
+{
+  "slot": "ronmc:attachment/slot/conversion/train_mk18",
+  "model": "ronmc:attachment/conversion/train_mk18_geo",
+  "texture": "ronmc:attachment/uv/conversion/train_mk18",
+  "sounds": {
+    "install": "tacz:attachments/attachment_general_a",
+    "uninstall": "tacz:attachments/attachment_general_uninstall"
+  }
+}

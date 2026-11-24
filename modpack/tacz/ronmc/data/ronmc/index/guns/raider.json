@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.raider.name",
+  "display": "ronmc:raider_display",
+  "data": "ronmc:raider_data",
+  "tooltip": "ronmc.gun.raider.desc",
+  "type": "smg"
+}

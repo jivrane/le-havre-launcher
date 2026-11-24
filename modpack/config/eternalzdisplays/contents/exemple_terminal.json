@@ -1,0 +1,18 @@
+{
+  "_aide": "Exemple pour un ecran numerique (il s'affiche aussi sur papier). size: \"auto\" (defaut) ou une hauteur de ligne en pixels de bloc.",
+  "schema": 1,
+  "title": "Terminal - etat du secteur",
+  "layers": [
+    {
+      "type": "text",
+      "x": 0.04,
+      "y": 0.04,
+      "width": 0.92,
+      "height": 0.92,
+      "align": "left",
+      "valign": "top",
+      "lines": ["> SECTEUR 7 : &aOPERATIONNEL", "> RADIATIONS : &e2.4 mSv/h", "> ACCES : &cRESTREINT", "", "Signalez toute anomalie au staff."],
+      "maxSize": 3.5
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "ads_addend": -0.1,
+  "inaccuracy_addend": 1.2,
+  "aim_inaccuracy": {
+    "multiplier": 1.2
+  },
+  "recoil": {
+    "pitch": {
+      "multiplier": 0.8
+    },
+    "yaw": {
+      "multiplier": 0.6
+    }
+  },
+  "damage": {
+    "multiplier": 0.1
+  },
+  "ammo_speed": {
+    "multiplier": 0.9
+  }
+}

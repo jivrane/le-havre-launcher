@@ -1,0 +1,31 @@
+{
+  "_note": "SuperbAddon armor penetration for SuperbWarfare vehicle weapons. Keys are projectile/entity/gun ids. Values accept 0.35 or 35%; values are clamped to 0..1. Near 1.0 is treated as full bypass. Existing user entries are not overwritten by autofill.",
+  "enabled": true,
+  "armor_penetration_by_weapon": {
+    "superbwarfare:small_cannon_shell": "0.80",
+    "superbwarfare:grapeshot": "0.35"
+  },
+  "full_armor_bypass_weapons": [
+    "superbwarfare:cannon_shell",
+    "superbwarfare:small_rocket",
+    "superbwarfare:medium_rocket",
+    "superbwarfare:rpg_rocket_standard",
+    "superbwarfare:rpg_rocket_tbg",
+    "superbwarfare:wire_guide_missile",
+    "superbwarfare:javelin_missile",
+    "superbwarfare:agm_65",
+    "superbwarfare:kh_39",
+    "superbwarfare:igla_9k38_missile",
+    "superbwarfare:ru_9m336_missile",
+    "superbwarfare:swarm_drone",
+    "superbwarfare:mk_82",
+    "superbwarfare:sc_50",
+    "superbwarfare:sc_250",
+    "superbwarfare:mortar_shell"
+  ],
+  "explosion": {
+    "minimum_outer_penetration": 0.35,
+    "inner_radius_factor": 0.35,
+    "outer_falloff_power": 2.0
+  }
+}

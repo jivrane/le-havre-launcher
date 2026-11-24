@@ -1,0 +1,55 @@
+{
+    "model": "ronmc:gun/m45a1.geo",
+    "texture": "ronmc:gun/uv/m45a1",
+    "hud": "ronmc:gun/hud/m45a1",
+    "slot": "ronmc:gun/slot/m45a1",
+    "animation": "ronmc:m45a1",
+    "use_default_animation": "pistol",
+    "third_person_animation": "default",
+    "lod": {
+      "model": "ronmc:gun/lod/m45a1",
+      "texture": "ronmc:gun/lod/m45a1"
+    },
+    "transform": {
+      "scale": {
+        "thirdperson": [0.6, 0.6, 0.6],
+        "ground": [0.6, 0.6, 0.6],
+        "fixed": [1.2, 1.2, 1.2]
+      }
+    },
+    "muzzle_flash": {
+      "texture": "tacz:flash/common_muzzle_flash",
+      "scale": 0.75
+    },
+    "shell": {
+        "initial_velocity": [8.0, 5.0, -0.5],
+        "random_velocity": [2.5, 1.5, 0.25],
+        "acceleration": [0.0, -20, 0.0],
+        "angular_velocity": [-720, -720, 90],
+        "living_time": 1.0
+    },
+    "sounds": {
+        "shoot": "ronmc:m45a1/m45a1_shoot",
+        "shoot_3p": "ronmc:m45a1/m45a1_shoot_3p",
+        "reload_empty": "ronmc:m45a1/m45a1_reload_empty",
+        "reload_tactical": "ronmc:m45a1/m45a1_reload_tactical",
+        "inspect": "ronmc:m45a1/m45a1_inspect",
+        "inspect_empty": "ronmc:m45a1/m45a1_inspect_empty",
+        "draw": "ronmc:m45a1/m45a1_draw",
+        "put_away": "ronmc:m45a1/m45a1_put_away",
+        "silence": "ronmc:m45a1/m45a1_silence",
+        "silence_3p": "ronmc:m45a1/m45a1_silence_3p"
+    },
+    "offhand_show": {
+        "pos": [4, 13, -1],
+        "rotate": [-90, -35, 90],
+        "scale": [0.5, 0.5, 0.5]
+    },
+    "hotbar_show": {
+        "0": {
+            "pos": [-5, 13, -1],
+            "rotate": [-90, -35, 90],
+            "scale": [0.5, 0.5, 0.5]
+        }
+    }
+  }

@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.attachment.custom_laser.name",
+  "display": "ronmc:custom_laser_display",
+  "data": "ronmc:custom_laser_data",
+  "type": "laser",
+  "sort": 1,
+  "hidden": false
+}

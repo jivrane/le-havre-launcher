@@ -1,0 +1,6 @@
+{
+  "name": "ronmc.attachment.spread_choke.name",
+  "display": "ronmc:spread_choke_display",
+  "data": "ronmc:spread_choke_data",
+  "type": "muzzle"
+}

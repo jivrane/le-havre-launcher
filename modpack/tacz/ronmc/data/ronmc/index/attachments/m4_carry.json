@@ -1,0 +1,6 @@
+{
+  "name": "ronmc.attachment.m4_carry.name",
+  "display": "ronmc:m4_carry_display",
+  "data": "ronmc:m4_carry_data",
+  "type": "scope"
+}

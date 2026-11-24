@@ -2,24 +2,45 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 
-// Chemin du serveur Minecraft local
+// Chemins source et destination
 const serverDir = path.resolve('..', 'minecraft-server');
+const modpackDir = path.resolve('modpack');
 const outputManifest = path.resolve('manifest.json');
 
-// Dossiers à inclure dans le modpack client
-const targetFolders = ['mods', 'config', 'defaultconfigs', 'patchouli_books', 'tacz'];
-
-// Mods exclus (mods purement serveur si nécessaire)
-const excludedMods = ['dynmap', 'spark', 'worldedit'];
+// URL de base GitHub Raw pour le téléchargement automatique par le launcher
+const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack';
 
 function getSha1(filePath) {
   const fileBuffer = fs.readFileSync(filePath);
-  const hashSum = crypto.createHash('sha1');
-  hashSum.update(fileBuffer);
-  return hashSum.digest('hex');
+  return crypto.createHash('sha1').update(fileBuffer).digest('hex');
 }
 
-function scanDir(baseDir, currentRelDir = '') {
+function copyFilteredDir(srcDir, destDir) {
+  if (!fs.existsSync(srcDir)) return;
+  if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+
+  const entries = fs.readdirSync(srcDir, { withFileTypes: true });
+  for (const entry of entries) {
+    // Ignorer les backups (.bak), logs, fichiers temporaires
+    if (entry.name.endsWith('.bak') || entry.name.endsWith('.tmp') || entry.name.endsWith('.log') || entry.name.startsWith('.')) {
+      continue;
+    }
+
+    const srcPath = path.join(srcDir, entry.name);
+    const destPath = path.join(destDir, entry.name);
+
+    if (entry.isDirectory()) {
+      copyFilteredDir(srcPath, destPath);
+    } else {
+      // Copier uniquement si absent ou taille différente pour gagner du temps
+      if (!fs.existsSync(destPath) || fs.statSync(srcPath).size !== fs.statSync(destPath).size) {
+        fs.copyFileSync(srcPath, destPath);
+      }
+    }
+  }
+}
+
+function scanModpack(baseDir, currentRelDir = '') {
   const fullDir = path.join(baseDir, currentRelDir);
   if (!fs.existsSync(fullDir)) return [];
 
@@ -31,18 +52,19 @@ function scanDir(baseDir, currentRelDir = '') {
     const fullPath = path.join(baseDir, relPath);
 
     if (entry.isDirectory()) {
-      results = results.concat(scanDir(baseDir, relPath));
+      results = results.concat(scanModpack(baseDir, relPath));
     } else {
-      // Ignorer les fichiers temporaires ou cachés
-      if (entry.name.startsWith('.') || entry.name.endsWith('.tmp') || entry.name.endsWith('.log')) continue;
-
       const size = fs.statSync(fullPath).size;
       const sha1 = getSha1(fullPath);
+
+      // Encoder les segments d'URL (espaces, caractères spéciaux)
+      const encodedRelPath = relPath.split('/').map(encodeURIComponent).join('/');
 
       results.push({
         path: relPath,
         size,
-        sha1
+        sha1,
+        url: `${GITHUB_RAW_BASE}/${encodedRelPath}`
       });
     }
   }
@@ -50,8 +72,24 @@ function scanDir(baseDir, currentRelDir = '') {
   return results;
 }
 
-console.log('--- GÉNÉRATEUR DE MANIFESTE // LE HAVRE ---');
-console.log(`Scan du serveur depuis : ${serverDir}`);
+console.log('--- PRÉPARATION DU MODPACK & MANIFESTE // LE HAVRE ---');
+
+// 1. Copier les dossiers du serveur vers modpack/
+console.log('Copie de mods/ ...');
+copyFilteredDir(path.join(serverDir, 'mods'), path.join(modpackDir, 'mods'));
+
+console.log('Fusion de mods_client_only/ dans modpack/mods/ ...');
+copyFilteredDir(path.join(serverDir, 'mods_client_only'), path.join(modpackDir, 'mods'));
+
+console.log('Copie de config/ ...');
+copyFilteredDir(path.join(serverDir, 'config'), path.join(modpackDir, 'config'));
+
+console.log('Copie de tacz/ ...');
+copyFilteredDir(path.join(serverDir, 'tacz'), path.join(modpackDir, 'tacz'));
+
+// 2. Générer le manifest.json avec les URLs GitHub Raw
+console.log('Calcul des empreintes SHA-1 et génération de manifest.json...');
+const files = scanModpack(modpackDir);
 
 const manifest = {
   serverName: 'Le Havre',
@@ -59,19 +97,8 @@ const manifest = {
   forgeVersion: '47.4.28',
   minecraftVersion: '1.20.1',
   generatedAt: new Date().toISOString(),
-  files: []
+  files
 };
 
-for (const folder of targetFolders) {
-  const folderPath = path.join(serverDir, folder);
-  if (fs.existsSync(folderPath)) {
-    console.log(`Analyse du dossier : ${folder}...`);
-    const files = scanDir(serverDir, folder);
-    manifest.files.push(...files);
-  }
-}
-
-// Écriture du manifest.json
 fs.writeFileSync(outputManifest, JSON.stringify(manifest, null, 2), 'utf-8');
-console.log(`\nSuccès ! ${manifest.files.length} fichiers répertoriés dans manifest.json`);
-console.log(`Fichier généré : ${outputManifest}`);
+console.log(`\nSuccès ! ${manifest.files.length} fichiers prêts dans modpack/ et indexés dans manifest.json.`);

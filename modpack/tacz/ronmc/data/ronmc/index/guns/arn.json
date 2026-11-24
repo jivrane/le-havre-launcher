@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.arn.name",
+  "display": "ronmc:arn_display",
+  "data": "ronmc:arn_data",
+  "tooltip": "ronmc.gun.arn.desc",
+  "type": "rifle",
+  "sort": 2
+}

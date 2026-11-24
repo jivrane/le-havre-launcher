@@ -1,0 +1,9 @@
+{
+    "name": "ronmc.gun.supernova.name",
+    "display": "ronmc:supernova_display",
+    "data": "ronmc:supernova_data",
+    "tooltip": "ronmc.gun.supernova.desc",
+    "type": "shotgun",
+    "item_type": "modern_kinetic",
+    "sort": 1
+}

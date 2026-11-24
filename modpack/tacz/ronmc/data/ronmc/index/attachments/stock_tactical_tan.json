@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.attachment.stock_tactical_tan.name",
+  "display": "ronmc:stock_tactical_tan_display",
+  "data": "ronmc:stock_tactical_tan_data",
+  "type": "stock",
+  "sort": 10
+}

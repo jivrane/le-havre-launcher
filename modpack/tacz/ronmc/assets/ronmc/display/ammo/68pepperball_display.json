@@ -1,0 +1,10 @@
+{
+  "model": "ronmc:ammo/68pepperball",
+  "texture": "ronmc:ammo/uv/68pepperball",
+  "slot": "ronmc:ammo/slot/68pepperball",
+  "shell": {
+    "model": "ronmc:shell/68pepperball",
+    "texture": "ronmc:shell/68pepperball"
+  },
+  "tracer_color": "#FF9999"
+}

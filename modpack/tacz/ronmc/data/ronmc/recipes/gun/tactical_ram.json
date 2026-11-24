@@ -1,0 +1,21 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:blocks/iron"
+      },
+      "count": 3
+    },
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 6
+    }
+  ],
+  "result": {
+    "type": "gun",
+    "id": "ron:tactical_ram"
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}

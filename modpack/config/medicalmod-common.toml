@@ -1,0 +1,24 @@
+
+#Medical Mod Configuration
+[general]
+	#車両を無敵にする (true = ダメージを受けない)
+	vehicleInvincible = false
+	#病気システムを有効にする (false = 新規感染せず、かかっている病気も治る) / Enable the disease system (false = no new infections, and current diseases are cured)
+	diseaseEnabled = true
+	#自然感染を有効にする (false = 自然発症・伝染・食べ物などで新しく病気にかからない。かかっている病気とコマンドで付けた病気は進行する) / Allow natural infections (false = no new diseases from the environment, contagion or food; existing diseases and diseases given by /medical infect still progress)
+	naturalInfection = true
+	#けがを有効にする (false = ダメージで脳震盪・出血・内出血・骨折が起きない) / Enable injuries (false = damage never causes concussion, bleeding, internal bleeding or fractures)
+	injuriesEnabled = false
+	#強い衝撃（落下・壁への激突・車両・爆発・強い打撃など）で骨折する。骨折は手術でしか治らない / Strong impacts (falls, flying into walls, vehicles, explosions, heavy hits) can break bones. Fractures can only be treated with surgery
+	impactFracturesEnabled = false
+	#病気の進行速度の倍率 (0.5 = 半分の速度, 2.0 = 2倍速, 40.0 = 40倍速)
+	#Range: 0.1 ~ 40.0
+	diseaseProgressionSpeed = 1.0
+	#病気死亡時のペナルティ(朦朧・くさい)を有効にする
+	deathPenaltyEnabled = false
+	#同時に感染できる病気の最大数 (クローン病等の例外は含まない)
+	#Range: 1 ~ 10
+	maxSimultaneousDiseases = 2
+	#EZモード: ONにするとMOD初適用から現実時間72時間は病気にかからない (サバイバルモードのみ)
+	ezMode = true
+

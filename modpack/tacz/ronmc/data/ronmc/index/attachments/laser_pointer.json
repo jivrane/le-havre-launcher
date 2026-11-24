@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.attachment.laser_pointer.name",
+  "display": "ronmc:laser_pointer_display",
+  "data": "ronmc:laser_pointer_data",
+  "type": "laser",
+  "sort": 1,
+  "hidden": false
+}

@@ -1,0 +1,10 @@
+{
+  "model": "ronmc:ammo/300blk",
+  "texture": "ronmc:ammo/uv/300blk",
+  "slot": "ronmc:ammo/slot/300blk",
+  "shell": {
+    "model": "ronmc:shell/300blk_shell",
+    "texture": "ronmc:shell/300blk_shell"
+  },
+  "tracer_color": "#FF8888"
+}

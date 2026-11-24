@@ -1,0 +1,5 @@
+{
+  "_note": "SuperbAddon 载具配方覆写。按载具实体 id 匹配 superbwarfare:vehicle_assembling 配方。字段：disabled(禁用装配)、category(land|defense|aircraft|civilian|water|misc)、inputs(整份替换材料表，语法同主模组配方，如 '3 #superbwarfare:storage_blocks/steel')。groups：vehicles 列出成员，组内共用同一份覆写；一个载具只能属一组。overrides：单体覆写，整份替换其所属组的规则。三个字段各自可选。",
+  "groups": {},
+  "overrides": {}
+}

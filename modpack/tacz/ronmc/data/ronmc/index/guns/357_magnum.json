@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.357_magnum.name",
+  "display": "ronmc:357_magnum_display",
+  "data": "ronmc:357_magnum_data",
+  "tooltip": "ronmc.gun.357_magnum.desc",
+  "type": "pistol"
+}

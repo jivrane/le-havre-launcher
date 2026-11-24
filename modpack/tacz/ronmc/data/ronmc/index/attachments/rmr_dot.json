@@ -1,0 +1,6 @@
+{
+  "name": "ronmc.attachment.rmr_dot.name",
+  "display": "ronmc:rmr_dot_display",
+  "data": "ronmc:rmr_dot_data",
+  "type": "scope"
+}

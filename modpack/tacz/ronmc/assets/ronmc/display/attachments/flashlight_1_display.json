@@ -1,0 +1,9 @@
+{
+  "slot": "ronmc:attachment/slot/flashlight_1",
+  "model": "ronmc:attachment/flashlight_1_geo",
+  "texture": "ronmc:attachment/uv/flashlight_1",
+  "sounds": {
+    "install": "tacz:attachments/scope_general_c",
+    "uninstall": "tacz:attachments/scope_general_c"
+  }
+}

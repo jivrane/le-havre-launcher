@@ -1,0 +1,19 @@
+{
+  "slot": "ronmc:attachment/slot/rmr_dot",
+  "model": "ronmc:attachment/rmr_dot_geo",
+  "texture": "ronmc:attachment/uv/rmr_dot",
+  "lod": {
+    "model": "ronmc:attachment/lod/rmr_dot",
+    "texture": "ronmc:attachment/lod/rmr_dot"
+  },
+  "zoom": [
+    1.2
+  ],
+  "scope": false,
+  "sight": true,
+  "fov": 70.0,
+  "sounds": {
+    "install": "tacz:attachments/scope_general_e",
+    "uninstall": "tacz:attachments/scope_general_e"
+  }
+}

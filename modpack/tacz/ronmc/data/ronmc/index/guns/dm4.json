@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.dm4.name",
+  "display": "ronmc:dm4_display",
+  "data": "ronmc:dm4_data",
+  "type": "rifle",
+  "tooltip": "ronmc.gun.dm4.desc",
+  "sort": 2
+}

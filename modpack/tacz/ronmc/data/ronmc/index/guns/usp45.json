@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.usp45.name",
+  "display": "ronmc:usp45_display",
+  "data": "ronmc:usp45_data",
+  "tooltip": "ronmc.gun.usp45.desc",
+  "type": "pistol"
+}

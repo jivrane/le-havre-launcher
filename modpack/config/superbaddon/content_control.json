@@ -1,0 +1,9 @@
+{
+  "_note": "SuperbAddon content control. key = '<namespace>:<id>', value = keep | recipes_only | block_load. recipes_only 只删输出该目标的配方；block_load 还会裁剪资源(模型/纹理/geo/动画/声音/数据)、过滤创造栏、拦截容器与实体生成。items=枪械/物品, vehicles=载具实体, blocks=方块(BlockItem 与方块同名, 按方块资源布局裁剪 blockstate/方块模型/方块纹理/gui/掉落表, 不拦截放置与 BlockEntity)。vehicle_assembling_table/container 是基础设施，block_load 不会裁剪它们的资源或实体，避免装配台自爆。worldgen_ores 按命名空间禁用主模组矿物生成(不改已生成区块、不卸载方块/物品)。",
+  "items": {},
+  "vehicles": {},
+  "blocks": {},
+  "worldgen_ores": {
+    "superbwarfare": false
+  }
+}

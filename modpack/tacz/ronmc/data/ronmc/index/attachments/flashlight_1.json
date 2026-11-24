@@ -1,0 +1,7 @@
+{
+  "name": "RoN Test Flashlight 1",
+  "display": "ronmc:flashlight_1_display",
+  "data": "ronmc:flashlight_1_data",
+  "type": "laser",
+  "hidden": true
+}

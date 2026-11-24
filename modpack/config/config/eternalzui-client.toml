@@ -1,0 +1,14 @@
+#true : TAB vanilla tant qu'aucun snapshot EternalZUIBridge n'a été reçu (serveur sans bridge, solo...).
+#false : toujours le TAB EternalZ (joueurs sans grade affichés en gris).
+fallback-to-vanilla = true
+#Afficher aussi, en fin de liste et sans grade, les joueurs de la liste vanilla absents des données
+#EternalZ (grade en cours de chargement, identité non résolue...).
+show-unsynced-players = true
+#Afficher le grade boutique en badge secondaire du TAB (ex. « Vétéran » sous « Communication »).
+#Derrière un vrai grade staff, le grade boutique n'est jamais affiché (actif mais masqué).
+show-shop-rank = true
+#Afficher le ping (latence vanilla) de chaque joueur.
+show-ping = true
+#Fondu et léger glissement (120 ms) à l'ouverture et à la fermeture du TAB.
+animations = true
+

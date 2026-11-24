@@ -1,0 +1,21 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:ingots/gold"
+      },
+      "count": 6
+    },
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 65
+    }
+  ],
+  "result": {
+    "type": "gun",
+    "id": "ronmc:ga51"
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}

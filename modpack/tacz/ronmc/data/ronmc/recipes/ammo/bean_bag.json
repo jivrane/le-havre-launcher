@@ -1,0 +1,22 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 11
+    },
+    {
+      "item": {
+        "tag": "forge:dusts/redstone"
+      },
+      "count": 14
+    }
+  ],
+  "result": {
+    "type": "ammo",
+    "id": "ronmc:bean_bag",
+    "count": 18
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}

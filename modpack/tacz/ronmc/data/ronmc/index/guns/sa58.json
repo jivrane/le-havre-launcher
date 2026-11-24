@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.sa58.name",
+  "display": "ronmc:sa58_display",
+  "data": "ronmc:sa58_data",
+  "tooltip": "ronmc.gun.sa58.desc",
+  "type": "rifle",
+  "sort": 3
+}

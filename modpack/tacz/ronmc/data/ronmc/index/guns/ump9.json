@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.ump9.name",
+  "display": "ronmc:ump9_display",
+  "data": "ronmc:ump9_data",
+  "tooltip": "ronmc.gun.ump9.desc",
+  "type": "smg"
+}

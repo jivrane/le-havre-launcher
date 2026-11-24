@@ -1,0 +1,6 @@
+{
+  "name": "ronmc.attachment.combat_grip.name",
+  "display": "ronmc:combat_grip_display",
+  "data": "ronmc:combat_grip_data",
+  "type": "grip"
+}

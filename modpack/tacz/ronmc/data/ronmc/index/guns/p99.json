@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.p99.name",
+  "display": "ronmc:p99_display",
+  "data": "ronmc:p99_data",
+  "tooltip": "ronmc.gun.p99.desc",
+  "type": "pistol"
+}

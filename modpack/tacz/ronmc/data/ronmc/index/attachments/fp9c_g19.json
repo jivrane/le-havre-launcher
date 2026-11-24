@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.attachment.fp9c_g19.name",
+  "display": "ronmc:conversion/fp9c_g19_display",
+  "data": "ronmc:conversion/fp9c_g19_data",
+  "type": "muzzle",
+  "hidden": "true"
+}

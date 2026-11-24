@@ -1,0 +1,8 @@
+{
+  "whitelist": [
+  "^ronmc:.*$"
+  ],
+  "blacklist": [
+    "tacz:test"
+  ]
+}

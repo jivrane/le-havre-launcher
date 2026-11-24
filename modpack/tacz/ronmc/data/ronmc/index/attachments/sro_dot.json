@@ -1,0 +1,6 @@
+{
+  "name": "ronmc.attachment.sro_dot.name",
+  "display": "ronmc:sro_dot_display",
+  "data": "ronmc:sro_dot_data",
+  "type": "scope"
+}

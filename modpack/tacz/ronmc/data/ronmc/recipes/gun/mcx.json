@@ -1,0 +1,27 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:ingots/gold"
+      },
+      "count": 16
+    },
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 60
+    },
+    {
+      "item": {
+        "tag": "forge:gems/quartz"
+      },
+      "count": 7
+    }
+  ],
+  "result": {
+    "type": "gun",
+    "id": "ronmc:mcx"
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}

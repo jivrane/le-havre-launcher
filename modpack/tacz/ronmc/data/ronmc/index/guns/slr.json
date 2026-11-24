@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.slr.name",
+  "display": "ronmc:slr_display",
+  "data": "ronmc:slr_data",
+  "tooltip": "ronmc.gun.slr.desc",
+  "type": "rifle",
+  "sort": 2
+}

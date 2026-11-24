@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.attachment.train_mk18.name",
+  "display": "ronmc:conversion/train_mk18_display",
+  "data": "ronmc:conversion/train_mk18_data",
+  "type": "muzzle",
+  "hidden": "true"
+}

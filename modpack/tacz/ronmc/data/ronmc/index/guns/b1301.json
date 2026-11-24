@@ -1,0 +1,9 @@
+{
+    "name": "ronmc.gun.b1301.name",
+    "display": "ronmc:b1301_display",
+    "data": "ronmc:b1301_data",
+    "tooltip": "ronmc.gun.b1301.desc",
+    "type": "shotgun",
+    "item_type": "modern_kinetic",
+    "sort": 1
+}

@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.train_g19.name",
+  "display": "ronmc:train_g19_display",
+  "data": "ronmc:train_g19_data",
+  "tooltip": "ronmc.gun.train_g19.desc",
+  "type": "pistol"
+}

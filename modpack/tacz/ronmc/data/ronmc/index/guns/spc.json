@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.spc.name",
+  "display": "ronmc:spc_display",
+  "data": "ronmc:spc_data",
+  "type": "smg",
+  "tooltip": "ronmc.gun.spc.desc",
+  "sort": 2
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tacz:workbench_c",
+    "nbt": {
+      "BlockId": "ronmc:gun_locker"
+    }
+  },
+  "pattern": [
+    "III",
+    "IBI",
+    "I I"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    }
+  }
+}

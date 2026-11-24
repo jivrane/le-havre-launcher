@@ -1,0 +1,9 @@
+{
+  "slot": "ronmc:attachment/slot/12ga_brake",
+  "model": "ronmc:attachment/12ga_brake_geo",
+  "texture": "ronmc:attachment/uv/12ga_brake",
+  "sounds": {
+    "install": "tacz:attachments/attachment_general_a",
+    "uninstall": "tacz:attachments/attachment_general_uninstall"
+  }
+}

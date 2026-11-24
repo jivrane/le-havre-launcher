@@ -1,0 +1,27 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:ingots/gold"
+      },
+      "count": 18
+    },
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 60
+    },
+    {
+      "item": {
+        "tag": "forge:gems/quartz"
+      },
+      "count": 5
+    }
+  ],
+  "result": {
+    "type": "gun",
+    "id": "ronmc:arwc"
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}

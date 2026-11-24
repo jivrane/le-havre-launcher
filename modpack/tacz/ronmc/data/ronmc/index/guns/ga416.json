@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.ga416.name",
+  "display": "ronmc:ga416_display",
+  "data": "ronmc:ga416_data",
+  "type": "rifle",
+  "tooltip": "ronmc.gun.ga416.desc",
+  "sort": 2
+}

@@ -1,0 +1,9 @@
+{
+
+  "name": "ronmc.block.gun_locker.name",
+  "display": "ronmc:gun_locker",
+  "data": "ronmc:gun_locker",
+  "tooltip": "ronmc.block.gun_locker.desc",
+  "id": "tacz:workbench_c",
+  "sort": 20
+}

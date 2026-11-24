@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.mk17.name",
+  "display": "ronmc:mk17_display",
+  "data": "ronmc:mk17_data",
+  "tooltip": "ronmc.gun.mk17.desc",
+  "type": "rifle",
+  "sort": 4
+}

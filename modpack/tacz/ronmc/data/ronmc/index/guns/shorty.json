@@ -1,0 +1,9 @@
+{
+    "name": "ronmc.gun.shorty.name",
+    "tooltip": "ronmc.gun.shorty.desc",
+    "display": "ronmc:shorty_display",
+    "data": "ronmc:shorty_data",
+    "type": "shotgun",
+    "item_type": "modern_kinetic",
+    "sort": 1
+}

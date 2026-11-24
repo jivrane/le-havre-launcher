@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.train_mk18.name",
+  "display": "ronmc:train_mk18_display",
+  "data": "ronmc:train_mk18_data",
+  "tooltip": "ronmc.gun.train_mk18.desc",
+  "type": "rifle",
+  "sort": 4
+}

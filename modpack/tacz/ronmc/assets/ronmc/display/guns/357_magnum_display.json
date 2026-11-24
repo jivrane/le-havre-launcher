@@ -1,0 +1,44 @@
+{
+  "model": "ronmc:gun/357_magnum_geo",
+  "texture": "ronmc:gun/uv/357_magnum",
+  "lod": {
+    "model": "ronmc:gun/lod/357_magnum",
+    "texture": "ronmc:gun/lod/357_magnum"
+  },
+  "hud": "ronmc:gun/hud/357_magnum",
+  "slot": "ronmc:gun/slot/357_magnum",
+  "animation": "ronmc:357_magnum",
+  "use_default_animation": "pistol",
+  "state_machine": "ronmc:taurus500_state_machine",
+  "player_animator_3rd": "tacz:pistol_default.player_animation",
+  "transform": {
+    "scale": {
+      "thirdperson": [0.3, 0.3, 0.3],
+      "ground": [0.6, 0.6, 0.6],
+      "fixed": [1.2, 1.2, 1.2]
+    }
+  },
+  "muzzle_flash": {
+    "texture": "tacz:flash/common_muzzle_flash",
+    "scale": 1
+  },
+  "sounds": {
+    "draw": "ronmc:357_magnum/draw",
+    "put_away": "ronmc:357_magnum/put_away",
+    "shoot": "ronmc:357_magnum/shoot",
+    "shoot_3p": "ronmc:357_magnum/shoot"
+  },
+  "iron_zoom": 1.5,
+  "offhand_show": {
+    "pos": [4, 13, -1],
+    "rotate": [-90, -35, 90],
+    "scale": [0.5, 0.5, 0.5]
+  },
+  "hotbar_show": {
+    "0": {
+      "pos": [0, 20, 3],
+      "rotate": [-180, 0, 120],
+      "scale": [0.5, 0.5, 0.5]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.attachment.m32a1_he.name",
+  "tooltip": "ronmc.attachment.m32a1_he.tooltip",
+  "display": "ronmc:m32a1_he_display",
+  "data": "ronmc:m32a1_he_data",
+  "type": "extended_mag",
+  "sort": 24080
+}

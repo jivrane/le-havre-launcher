@@ -1,0 +1,29 @@
+{
+  "model": "ronmc:ammo/slug",
+  "texture": "ronmc:ammo/uv/slug",
+  "slot": "ronmc:ammo/slot/slug",
+  "shell": {
+    "model": "ronmc:shell/bean_bag_shell",
+    "texture": "ronmc:shell/bean_bag_shell"
+  },
+  "tracer_color": "#FF9999",
+  "transform": {
+    "scale": {
+      "thirdperson": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "ground": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "fixed": [
+        1.5,
+        1.5,
+        1.5
+      ]
+    }
+  }
+}

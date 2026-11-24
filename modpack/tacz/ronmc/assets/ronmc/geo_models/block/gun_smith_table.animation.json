@@ -1,0 +1,31 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"door_open": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.2917,
+			"bones": {
+				"door": {
+					"rotation": {
+						"0.0": [0, 127.5, 0],
+						"0.2917": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"door_close": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.4167,
+			"bones": {
+				"door": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.2917": [0, 127.5, 0],
+						"0.3333": [0, 125, 0],
+						"0.375": [0, 127.5, 0]
+					}
+				}
+			}
+		}
+	}
+}

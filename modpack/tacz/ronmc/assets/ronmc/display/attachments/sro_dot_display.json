@@ -1,0 +1,19 @@
+{
+  "slot": "ronmc:attachment/slot/sro_dot",
+  "model": "ronmc:attachment/sro_dot_geo",
+  "texture": "ronmc:attachment/uv/sro_dot",
+  "lod": {
+    "model": "ronmc:attachment/lod/sro_dot",
+    "texture": "ronmc:attachment/lod/sro_dot"
+  },
+  "zoom": [
+    1.2
+  ],
+  "scope": false,
+  "sight": true,
+  "fov": 70.0,
+  "sounds": {
+    "install": "tacz:attachments/scope_general_e",
+    "uninstall": "tacz:attachments/scope_general_e"
+  }
+}

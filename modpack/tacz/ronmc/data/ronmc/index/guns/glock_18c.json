@@ -1,0 +1,7 @@
+{
+  "name": "ronmc.gun.glock_18c.name",
+  "display": "ronmc:glock_18c_display",
+  "data": "ronmc:glock_18c_data",
+  "tooltip": "ronmc.gun.glock_18c.desc",
+  "type": "pistol"
+}

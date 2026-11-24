@@ -1,0 +1,10 @@
+{
+  "model": "ronmc:ammo/65x48",
+  "texture": "ronmc:ammo/uv/65x48",
+  "slot": "ronmc:ammo/slot/65x48",
+  "shell": {
+    "model": "ronmc:shell/300blk_shell",
+    "texture": "ronmc:shell/300blk_shell"
+  },
+  "tracer_color": "#FF8888"
+}

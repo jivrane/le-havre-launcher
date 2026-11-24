@@ -1,0 +1,52 @@
+{
+  "model": "ronmc:gun/trpl_geo",
+  "texture": "ronmc:gun/uv/trpl",
+  "lod": {
+    "model": "ronmc:gun/lod/trpl",
+    "texture": "ronmc:gun/lod/trpl"
+  },
+  "hud": "ronmc:gun/hud/trpl",
+  "slot": "ronmc:gun/slot/trpl",
+  "animation": "ronmc:trpl",
+  "use_default_animation": "pistol",
+  "player_animator_3rd": "tacz:pistol_default.player_animation",
+  "transform": {
+    "scale": {
+      "thirdperson": [0.6, 0.6, 0.6],
+      "ground": [0.6, 0.6, 0.6],
+      "fixed": [1.2, 1.2, 1.2]
+    }
+  },
+  "shell": {
+    "initial_velocity": [8.0, 5.0, -0.5],
+    "random_velocity": [2.5, 1.5, 0.25],
+    "acceleration": [0.0, -20, 0.0],
+    "angular_velocity": [360, -720, 90],
+    "living_time": 1.0
+  },
+  "muzzle_flash": {
+    "texture": "tacz:flash/common_muzzle_flash",
+    "scale": 0.4
+  },
+  "sounds": {
+    "reload_empty": "ronmc:trpl/trpl_reload_empty",
+    "reload_tactical": "ronmc:trpl/trpl_reload_tactical",
+    "inspect": "ronmc:trpl/trpl_inspect",
+    "inspect_empty": "ronmc:trpl/trpl_inspect_empty",
+    "draw": "ronmc:trpl/trpl_draw",
+    "shoot": "ronmc:trpl/trpl_shoot",
+    "shoot_3p": "ronmc:trpl/trpl_shoot_3p"
+  },
+  "offhand_show": {
+    "pos": [4, 13, -1],
+    "rotate": [-90, -35, 90],
+    "scale": [0.5, 0.5, 0.5]
+  },
+  "hotbar_show": {
+    "0": {
+      "pos": [-5, 13, -1],
+      "rotate": [-90, -35, 90],
+      "scale": [0.5, 0.5, 0.5]
+    }
+  }
+}

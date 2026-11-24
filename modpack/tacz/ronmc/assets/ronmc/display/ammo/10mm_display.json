@@ -1,0 +1,29 @@
+{
+  "model": "ronmc:ammo/10mm",
+  "texture": "ronmc:ammo/uv/10mm",
+  "slot": "ronmc:ammo/slot/10mm",
+  "shell": {
+    "model": "ronmc:shell/10mm_shell",
+    "texture": "ronmc:shell/10mm_shell"
+  },
+  "tracer_color": "#FF9999",
+  "transform": {
+    "scale": {
+      "thirdperson": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "ground": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "fixed": [
+        1.5,
+        1.5,
+        1.5
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "slot": "ronmc:attachment/slot/canted",
+  "model": "ronmc:attachment/canted_geo",
+  "texture": "ronmc:attachment/uv/canted",
+  "lod": {
+    "model": "ronmc:attachment/lod/canted",
+    "texture": "ronmc:attachment/lod/canted"
+  },
+  "zoom": [
+    1.2
+  ],
+  "views": [
+    2,
+    1
+  ],
+  "scope": true,
+  "sight": true,
+  "fov": 70.0,
+  "sounds": {
+    "install": "tacz:attachments/scope_general_e",
+    "uninstall": "tacz:attachments/scope_general_e"
+  }
+}

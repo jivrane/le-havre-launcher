@@ -1,0 +1,9 @@
+{
+    "name": "ronmc.gun.870cqb.name",
+    "display": "ronmc:870cqb_display",
+    "data": "ronmc:870cqb_data",
+    "tooltip": "ronmc.gun.870cqb.desc",
+    "type": "shotgun",
+    "item_type": "modern_kinetic",
+    "sort": 1
+}

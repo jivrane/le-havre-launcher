@@ -1,0 +1,6 @@
+{
+  "name": "ronmc.attachment.12ga_brake.name",
+  "display": "ronmc:12ga_brake_display",
+  "data": "ronmc:12ga_brake_data",
+  "type": "muzzle"
+}

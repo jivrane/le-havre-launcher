@@ -1,0 +1,8 @@
+{
+  "name": "ronmc.gun.mpx.name",
+  "display": "ronmc:mpx_display",
+  "data": "ronmc:mpx_data",
+  "type": "smg",
+  "tooltip": "ronmc.gun.mpx.desc",
+  "sort": 2
+}

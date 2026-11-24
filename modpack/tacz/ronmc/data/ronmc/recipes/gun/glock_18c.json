@@ -1,0 +1,15 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 24
+    }
+  ],
+  "result": {
+    "type": "gun",
+    "id": "ronmc:glock_18c"
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}
