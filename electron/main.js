@@ -28,7 +28,7 @@ const defaultSettings = {
   autoConnect: true,
   serverIp: '127.0.0.1',
   serverPort: 25565,
-  gitManifestUrl: 'https://raw.githubusercontent.com/LeHavreMC/launcher-manifest/main/manifest.json'
+  gitManifestUrl: 'https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/manifest.json'
 };
 
 function loadSettings() {
