@@ -6,6 +6,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const CONCURRENCY = 16;
+
 function getSha1(filePath) {
   try {
     const fileBuffer = fs.readFileSync(filePath);
@@ -13,6 +15,22 @@ function getSha1(filePath) {
   } catch {
     return null;
   }
+}
+
+async function downloadFileWithRetry(url, targetPath, retries = 2) {
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const buffer = await res.arrayBuffer();
+      fs.writeFileSync(targetPath, Buffer.from(buffer));
+      return true;
+    } catch (err) {
+      if (attempt === retries) throw err;
+      await new Promise((r) => setTimeout(r, 400 * (attempt + 1)));
+    }
+  }
+  return false;
 }
 
 export async function synchronizeGameFiles(gameDir, manifestSource, onProgress) {
@@ -23,12 +41,11 @@ export async function synchronizeGameFiles(gameDir, manifestSource, onProgress) 
   onProgress({
     stage: 'MANIFEST',
     progress: 5,
-    message: 'Recherche de la dernière fréquence et du manifeste...'
+    message: 'Récupération du manifeste des mods...'
   });
 
   let manifest = null;
 
-  // Si manifestSource est une URL web (GitHub ou VPS)
   if (manifestSource.startsWith('http://') || manifestSource.startsWith('https://')) {
     try {
       const response = await fetch(manifestSource);
@@ -42,7 +59,6 @@ export async function synchronizeGameFiles(gameDir, manifestSource, onProgress) 
     }
   }
 
-  // Fallback local pour les tests ou si le dépôt n'est pas encore en ligne
   if (!manifest) {
     const localManifestPath = path.resolve(__dirname, '../manifest.json');
     if (fs.existsSync(localManifestPath)) {
@@ -58,83 +74,139 @@ export async function synchronizeGameFiles(gameDir, manifestSource, onProgress) 
     onProgress({
       stage: 'READY',
       progress: 100,
-      message: 'Fichiers locaux prêts (aucun nouveau manifeste détecté).'
+      message: 'Fichiers locaux prêts (aucun manifeste détecté).'
     });
     return { success: true, updated: 0 };
   }
 
   const files = manifest.files;
   const totalFiles = files.length;
-  let updatedCount = 0;
+
+  // Cache local des empreintes pour éviter de relire 815 Mo à chaque lancement
+  const cachePath = path.join(gameDir, '.lehavre-sync-cache.json');
+  let cache = {};
+  try {
+    if (fs.existsSync(cachePath)) {
+      cache = JSON.parse(fs.readFileSync(cachePath, 'utf-8'));
+    }
+  } catch {
+    cache = {};
+  }
 
   onProgress({
     stage: 'VERIFYING',
-    progress: 15,
-    message: `Vérification de l'intégrité de ${totalFiles} fichiers...`
+    progress: 10,
+    message: `Analyse rapide de ${totalFiles} fichiers...`
   });
+
+  const filesToDownload = [];
+  const newCache = {};
 
   for (let i = 0; i < totalFiles; i++) {
     const item = files[i];
     const targetPath = path.join(gameDir, item.path);
-    const targetDir = path.dirname(targetPath);
 
-    let needsUpdate = false;
-
-    if (!fs.existsSync(targetPath)) {
-      needsUpdate = true;
-    } else {
-      // Vérification rapide par taille d'abord, puis SHA1 si différent
+    let isValid = false;
+    if (fs.existsSync(targetPath)) {
       const stat = fs.statSync(targetPath);
-      if (stat.size !== item.size) {
-        needsUpdate = true;
-      } else {
-        const localHash = getSha1(targetPath);
-        if (localHash !== item.sha1) {
-          needsUpdate = true;
+      if (stat.size === item.size) {
+        const cached = cache[item.path];
+        if (cached && cached.size === stat.size && cached.mtimeMs === stat.mtimeMs && cached.sha1 === item.sha1) {
+          isValid = true;
+          newCache[item.path] = cached;
+        } else {
+          const localHash = getSha1(targetPath);
+          if (localHash === item.sha1) {
+            isValid = true;
+            newCache[item.path] = { size: stat.size, mtimeMs: stat.mtimeMs, sha1: localHash };
+          }
         }
       }
     }
 
-    if (needsUpdate) {
+    if (!isValid) {
+      filesToDownload.push(item);
+    }
+  }
+
+  if (filesToDownload.length === 0) {
+    try {
+      fs.writeFileSync(cachePath, JSON.stringify(newCache), 'utf-8');
+    } catch {}
+
+    onProgress({
+      stage: 'FINALIZING',
+      progress: 100,
+      message: 'Tous les fichiers sont déjà à jour !'
+    });
+    return { success: true, updated: 0 };
+  }
+
+  // Téléchargement en parallèle (CONCURRENCY = 16)
+  const totalToDownload = filesToDownload.length;
+  let completed = 0;
+  let updatedCount = 0;
+  let queueIndex = 0;
+
+  onProgress({
+    stage: 'DOWNLOADING',
+    progress: 15,
+    message: `Téléchargement de ${totalToDownload} fichiers (mode rapide x${CONCURRENCY})...`
+  });
+
+  async function worker() {
+    while (queueIndex < totalToDownload) {
+      const idx = queueIndex++;
+      const item = filesToDownload[idx];
+      const targetPath = path.join(gameDir, item.path);
+      const targetDir = path.dirname(targetPath);
+
       if (!fs.existsSync(targetDir)) {
         fs.mkdirSync(targetDir, { recursive: true });
       }
 
-      // Si URL fournie, télécharger depuis GitHub / VPS
       if (item.url) {
         try {
-          const res = await fetch(item.url);
-          const buffer = await res.arrayBuffer();
-          fs.writeFileSync(targetPath, Buffer.from(buffer));
+          await downloadFileWithRetry(item.url, targetPath);
           updatedCount++;
+          const stat = fs.statSync(targetPath);
+          newCache[item.path] = { size: stat.size, mtimeMs: stat.mtimeMs, sha1: item.sha1 };
         } catch (e) {
           console.error(`Erreur téléchargement ${item.path}:`, e);
         }
       } else {
-        // En local : copier directement depuis le dossier serveur si dispo
         const localServerSource = path.resolve(__dirname, '../../minecraft-server', item.path);
         if (fs.existsSync(localServerSource)) {
           fs.copyFileSync(localServerSource, targetPath);
           updatedCount++;
+          const stat = fs.statSync(targetPath);
+          newCache[item.path] = { size: stat.size, mtimeMs: stat.mtimeMs, sha1: item.sha1 };
         }
       }
-    }
 
-    // Mettre à jour la barre de progression périodiquement
-    if (i % 20 === 0 || i === totalFiles - 1) {
-      const progressPercent = Math.min(95, Math.round(15 + (i / totalFiles) * 80));
-      onProgress({
-        stage: 'DOWNLOADING',
-        progress: progressPercent,
-        message: `Contrôle : ${item.path.split('/').pop()} (${i + 1}/${totalFiles})`
-      });
+      completed++;
+      if (completed % 10 === 0 || completed === totalToDownload) {
+        const progressPercent = Math.min(94, Math.round(15 + (completed / totalToDownload) * 79));
+        onProgress({
+          stage: 'DOWNLOADING',
+          progress: progressPercent,
+          message: `Téléchargement (${completed}/${totalToDownload}) : ${item.path.split('/').pop()}`
+        });
+      }
     }
   }
 
+  const workers = Array.from({ length: Math.min(CONCURRENCY, totalToDownload) }, () => worker());
+  await Promise.all(workers);
+
+  try {
+    fs.writeFileSync(cachePath, JSON.stringify(newCache), 'utf-8');
+  } catch {}
+
   onProgress({
     stage: 'FINALIZING',
-    progress: 100,
-    message: 'Synchronisation achevée avec succès. Démarrage du moteur Forge...'
+    progress: 95,
+    message: `Synchronisation terminée (${updatedCount} fichiers mis à jour).`
   });
 
   return { success: true, updated: updatedCount };
