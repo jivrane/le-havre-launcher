@@ -15,24 +15,35 @@ export default function LaunchDeck({
       <div className="absolute inset-0 bg-radar-grid opacity-20 pointer-events-none"></div>
 
       <div className="relative z-10 flex flex-col space-y-4">
-        {/* Affichage de la progression si synchronisation ou lancement */}
-        {isLaunching && syncProgress && (
-          <div className="bg-black/60 border border-amber-500/30 rounded p-3">
+        {/* Affichage de la progression ou d'une erreur */}
+        {(isLaunching || syncProgress?.stage === 'ERROR') && syncProgress && (
+          <div className={`bg-black/60 border rounded p-3 ${
+            syncProgress.stage === 'ERROR' ? 'border-red-500/60 bg-red-950/20' : 'border-amber-500/30'
+          }`}>
             <div className="flex items-center justify-between text-xs font-mono-tech mb-1.5">
-              <span className="text-amber-400 flex items-center space-x-1.5">
-                <Loader2 className="w-3.5 h-3.5 animate-spin text-amber-500" />
+              <span className={`flex items-center space-x-1.5 ${
+                syncProgress.stage === 'ERROR' ? 'text-red-400' : 'text-amber-400'
+              }`}>
+                {syncProgress.stage === 'ERROR' ? (
+                  <AlertOctagon className="w-3.5 h-3.5 text-red-500 shrink-0" />
+                ) : (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin text-amber-500 shrink-0" />
+                )}
                 <span>{syncProgress.message || 'Préparation du sas...'}</span>
               </span>
-              <span className="text-gray-300 font-bold">{syncProgress.progress}%</span>
+              {syncProgress.stage !== 'ERROR' && (
+                <span className="text-gray-300 font-bold">{syncProgress.progress}%</span>
+              )}
             </div>
 
-            {/* Barre de progression avec style post-apocalyptique */}
-            <div className="w-full h-2.5 bg-gray-900 rounded-full overflow-hidden border border-gray-800 p-0.5">
-              <div 
-                className="h-full bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-400 rounded-full transition-all duration-300 shadow-[0_0_8px_rgba(245,158,11,0.6)]"
-                style={{ width: `${syncProgress.progress}%` }}
-              ></div>
-            </div>
+            {syncProgress.stage !== 'ERROR' && (
+              <div className="w-full h-2.5 bg-gray-900 rounded-full overflow-hidden border border-gray-800 p-0.5">
+                <div 
+                  className="h-full bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-400 rounded-full transition-all duration-300 shadow-[0_0_8px_rgba(245,158,11,0.6)]"
+                  style={{ width: `${syncProgress.progress}%` }}
+                ></div>
+              </div>
+            )}
           </div>
         )}
 

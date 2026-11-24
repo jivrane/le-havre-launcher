@@ -125,7 +125,12 @@ ipcMain.on('open-game-dir', () => {
 ipcMain.handle('auth-get-user', () => {
   try {
     if (fs.existsSync(userFile)) {
-      return JSON.parse(fs.readFileSync(userFile, 'utf-8'));
+      const profile = JSON.parse(fs.readFileSync(userFile, 'utf-8'));
+      if (profile && profile.mclcAuth) {
+        return profile;
+      }
+      // Ancien profil sans token réel MCLC : forcer une vraie reconnexion Microsoft
+      fs.unlinkSync(userFile);
     }
   } catch (e) {
     console.error('Erreur lecture profile:', e);
