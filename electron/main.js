@@ -30,8 +30,8 @@ const defaultSettings = {
   gameDir: defaultGameDir,
   javaPath: '',
   jvmArgs: '-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200',
-  autoConnect: true,
-  serverIp: '127.0.0.1',
+  autoConnect: false,
+  serverIp: '',
   serverPort: 25565,
   gitManifestUrl: 'https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/manifest.json'
 };
