@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "forgeVersion": "47.4.28",
   "minecraftVersion": "1.20.1",
-  "generatedAt": "2026-11-25T19:13:07.040Z",
+  "generatedAt": "2026-11-25T19:23:32.649Z",
   "files": [
     {
       "path": "config/Apocaly Soin items/adrenaline.json",
@@ -916,6 +916,126 @@
       "size": 412,
       "sha1": "2c0e1e4d4b66a1e8fe7c5d58a36816bb68b05596",
       "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/config/zombieawareness/PlayerRulesAndLists.toml"
+    },
+    {
+      "path": "customnpcs/assets/customnpcs/sounds.json",
+      "size": 4,
+      "sha1": "1bd8ce28f3075c8699068a4628ebd664915b4a1a",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/customnpcs/assets/customnpcs/sounds.json"
+    },
+    {
+      "path": "customnpcs/pack.mcmeta",
+      "size": 103,
+      "sha1": "485e37a760a3a42c843330af9c5a4fcf7d2da43c",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/customnpcs/pack.mcmeta"
+    },
+    {
+      "path": "kubejs/assets/kubejs/blockstates/medicine_table.json",
+      "size": 85,
+      "sha1": "0540448f0510c1624a71929e823e34b44c786f82",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/assets/kubejs/blockstates/medicine_table.json"
+    },
+    {
+      "path": "kubejs/assets/kubejs/lang/en_us.json",
+      "size": 58,
+      "sha1": "1a51fbafdd9f36a2738d349c65bdc72efda7ce17",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/assets/kubejs/lang/en_us.json"
+    },
+    {
+      "path": "kubejs/assets/kubejs/lang/fr_fr.json",
+      "size": 58,
+      "sha1": "1a51fbafdd9f36a2738d349c65bdc72efda7ce17",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/assets/kubejs/lang/fr_fr.json"
+    },
+    {
+      "path": "kubejs/assets/kubejs/models/block/medicine_table.json",
+      "size": 417,
+      "sha1": "395c05081893e0f259b5bdbd35e1756d045fa861",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/assets/kubejs/models/block/medicine_table.json"
+    },
+    {
+      "path": "kubejs/assets/kubejs/models/item/medicine_table.json",
+      "size": 46,
+      "sha1": "9752e25ed0928c92caf295476afec9541fbddd82",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/assets/kubejs/models/item/medicine_table.json"
+    },
+    {
+      "path": "kubejs/config/common.properties",
+      "size": 342,
+      "sha1": "f314f339f79694815c8bef9c33f91e14dc9e56d9",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/config/common.properties"
+    },
+    {
+      "path": "kubejs/data/rp_pseudos.json",
+      "size": 25,
+      "sha1": "acfa9907d873fbdcbea5507db4613b991a069666",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/data/rp_pseudos.json"
+    },
+    {
+      "path": "kubejs/README.txt",
+      "size": 1203,
+      "sha1": "3e56c097cd0c5be61b767a9a9ae73ae083d2eca9",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/README.txt"
+    },
+    {
+      "path": "kubejs/server_scripts/consequence_system.js",
+      "size": 38800,
+      "sha1": "2cb0aa1ec0b7a8fb4fe430011ab312b8fd021e92",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/server_scripts/consequence_system.js"
+    },
+    {
+      "path": "kubejs/server_scripts/medicine_table.js",
+      "size": 94435,
+      "sha1": "afb3003a594d6f5f11ed7b7dbd153d5b7c88bde7",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/server_scripts/medicine_table.js"
+    },
+    {
+      "path": "kubejs/server_scripts/preparation_table.js",
+      "size": 32665,
+      "sha1": "12943d2f8f951e740ae196e33828c057e6c794fc",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/server_scripts/preparation_table.js"
+    },
+    {
+      "path": "kubejs/server_scripts/pseudo_system.js",
+      "size": 15629,
+      "sha1": "fe9c44a1800981809689ccbdf99b08d2ba4b0052",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/server_scripts/pseudo_system.js"
+    },
+    {
+      "path": "kubejs/server_scripts/recettes_custom.js",
+      "size": 1281,
+      "sha1": "70fe4a8e9d73babdc52dae208b7a6040e932db35",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/server_scripts/recettes_custom.js"
+    },
+    {
+      "path": "kubejs/server_scripts/rp_system.js",
+      "size": 13782,
+      "sha1": "1bb4dac0e80407a2dc15d9e8025c4e86f4adb7b0",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/server_scripts/rp_system.js"
+    },
+    {
+      "path": "kubejs/server_scripts/vanish_system.js",
+      "size": 6994,
+      "sha1": "18fa3e162750d0e9aecf46002b482b903003567a",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/server_scripts/vanish_system.js"
+    },
+    {
+      "path": "kubejs/startup_scripts/example.js",
+      "size": 127,
+      "sha1": "bbeca4224e5e4dd007400d47b0f1e6618e8c68ec",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/startup_scripts/example.js"
+    },
+    {
+      "path": "kubejs/startup_scripts/medicine_table.js",
+      "size": 288,
+      "sha1": "79a027c05cdc39d7e6dbbe3f005b835432f761fb",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/startup_scripts/medicine_table.js"
+    },
+    {
+      "path": "kubejs/startup_scripts/tab_rename.js",
+      "size": 1281,
+      "sha1": "c4df7271d30165d4bace8ac85ac4281f62bd8fd1",
+      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/kubejs/startup_scripts/tab_rename.js"
     },
     {
       "path": "mods/AmbientEnvironment-forge-1.20.1-11.0.0.1.jar",

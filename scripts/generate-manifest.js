@@ -90,6 +90,12 @@ copyFilteredDir(path.join(serverDir, 'config'), path.join(modpackDir, 'config'))
 console.log('Copie de tacz/ ...');
 copyFilteredDir(path.join(serverDir, 'tacz'), path.join(modpackDir, 'tacz'));
 
+console.log('Copie de kubejs/ ...');
+copyFilteredDir(path.join(serverDir, 'kubejs'), path.join(modpackDir, 'kubejs'));
+
+console.log('Copie de customnpcs/ ...');
+copyFilteredDir(path.join(serverDir, 'customnpcs'), path.join(modpackDir, 'customnpcs'));
+
 // 2. Générer le manifest.json avec les URLs GitHub Raw
 console.log('Calcul des empreintes SHA-1 et génération de manifest.json...');
 const files = scanModpack(modpackDir);
