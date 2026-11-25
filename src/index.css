@@ -12,18 +12,21 @@
   }
 
   body {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Exo 2', sans-serif;
     user-select: none;
     -webkit-user-select: none;
   }
 }
 
 .font-mono-tech {
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'VT323', monospace;
+  font-size: 1.08em;
+  letter-spacing: 0.04em;
 }
 
 .font-stencil {
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: 'Black Ops One', sans-serif;
+  letter-spacing: 0.06em;
 }
 
 /* Effet grille radar */
