@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "forgeVersion": "47.4.28",
   "minecraftVersion": "1.20.1",
-  "generatedAt": "2026-11-24T21:40:23.380Z",
+  "generatedAt": "2026-11-25T19:13:07.040Z",
   "files": [
     {
       "path": "config/Apocaly Soin items/adrenaline.json",
@@ -1080,12 +1080,6 @@
       "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/mods/entity_texture_features_forge_1.20.1-6.2.9.jar"
     },
     {
-      "path": "mods/eternalz-auth-1.1.1.jar",
-      "size": 121349,
-      "sha1": "9674271beed45b16ae3abbefbdb9b5845a795470",
-      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/mods/eternalz-auth-1.1.1.jar"
-    },
-    {
       "path": "mods/EternalZ-Core-Items-V1.jar",
       "size": 45616,
       "sha1": "b0708c59aaebddf040ffc8ffe5694a23218bfd89",
@@ -1176,12 +1170,6 @@
       "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/mods/fusion-1.3.3-forge-mc1.20.1.jar"
     },
     {
-      "path": "mods/geckolib-forge-1.20.1-4.7.jar.disabled",
-      "size": 1004042,
-      "sha1": "698d4374fb062edf68b93e05f3bf3b5873cdd260",
-      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/mods/geckolib-forge-1.20.1-4.7.jar.disabled"
-    },
-    {
       "path": "mods/geckolib-forge-1.20.1-4.8.4.jar",
       "size": 1038209,
       "sha1": "81982cc287f80ffabb2fd36d22cc95e4255c739d",
@@ -1210,12 +1198,6 @@
       "size": 313243,
       "sha1": "7017487439d6b9a0826d21c4c5d6325fd02e8c35",
       "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/mods/InvMove-0.9.1%2B1.20.1-Forge.jar"
-    },
-    {
-      "path": "mods/kotlinforforge-4.11.0-all.jar.disabled",
-      "size": 7193768,
-      "sha1": "1fd8acfd75a2be2dc3cdcc7e816482b2e427d6e5",
-      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/mods/kotlinforforge-4.11.0-all.jar.disabled"
     },
     {
       "path": "mods/kotlinforforge-4.12.0-all.jar",
@@ -1450,12 +1432,6 @@
       "size": 14105355,
       "sha1": "45ce2ff59f0f5749798bc594cb33ec2a6a4e744a",
       "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/mods/WaT%200.4.0.jar"
-    },
-    {
-      "path": "mods/WaT 0.4.0.jar.backup",
-      "size": 14124393,
-      "sha1": "c35feb117e89b83fc03fee32bf2bc47ba7582aaa",
-      "url": "https://raw.githubusercontent.com/jivrane/le-havre-launcher/main/modpack/mods/WaT%200.4.0.jar.backup"
     },
     {
       "path": "mods/zmodfood 0.6.5.jar",

@@ -19,7 +19,7 @@ Write-Host "[1/3] Génération du manifeste des mods..." -ForegroundColor Cyan
 
 # 2. Vérifier les changements Git
 Write-Host "`n[2/3] Préparation des fichiers Git..." -ForegroundColor Cyan
-& "C:\Users\elijo\AppData\Local\Programs\Git\cmd\git.exe" add manifest.json
+& "C:\Users\elijo\AppData\Local\Programs\Git\cmd\git.exe" add manifest.json modpack scripts package.json package-lock.json
 $status = & "C:\Users\elijo\AppData\Local\Programs\Git\cmd\git.exe" status --porcelain
 
 if ($status) {

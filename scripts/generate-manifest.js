@@ -21,8 +21,8 @@ function copyFilteredDir(srcDir, destDir) {
 
   const entries = fs.readdirSync(srcDir, { withFileTypes: true });
   for (const entry of entries) {
-    // Ignorer les backups (.bak), logs, fichiers temporaires
-    if (entry.name.endsWith('.bak') || entry.name.endsWith('.tmp') || entry.name.endsWith('.log') || entry.name.startsWith('.')) {
+    // Ignorer les backups (.bak, .backup), fichiers désactivés (.disabled), logs, fichiers temporaires
+    if (entry.name.endsWith('.bak') || entry.name.endsWith('.backup') || entry.name.endsWith('.disabled') || entry.name.endsWith('.tmp') || entry.name.endsWith('.log') || entry.name.startsWith('.')) {
       continue;
     }
 
@@ -48,6 +48,9 @@ function scanModpack(baseDir, currentRelDir = '') {
   const entries = fs.readdirSync(fullDir, { withFileTypes: true });
 
   for (const entry of entries) {
+    if (entry.name.endsWith('.bak') || entry.name.endsWith('.backup') || entry.name.endsWith('.disabled') || entry.name.endsWith('.tmp') || entry.name.endsWith('.log') || entry.name.startsWith('.')) {
+      continue;
+    }
     const relPath = path.join(currentRelDir, entry.name).replace(/\\/g, '/');
     const fullPath = path.join(baseDir, relPath);
 
